@@ -12,14 +12,14 @@
     </div>
     
     <div class="button">
-        <a href="./join.html" class="btn">Let's Get Started</a>
+        <a href={{route('ViewJoin')}} class="btn btn-primary">Let's Get Started</a>
     </div>
     
     <div class="image-1">
         <img src={{ asset('assets/makeup.png') }} alt="">
     </div>
 </div>
-
+<div style="height: 100vh"></div>
 @endsection
 
 

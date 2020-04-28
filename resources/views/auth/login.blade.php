@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="login-box">
+<div class="login-box" >
     <img src="./assets/user-icon.png" class="icon">
     <h1>Log In</h1>
 
@@ -40,5 +40,6 @@
         <a href={{route('register')}} class="bottom-txt"> <b>Don't Have an Account? Sign Up</b> </a>
     </form>
 </div>
+<div style="height: 110vh"></div>
     
 @endsection
