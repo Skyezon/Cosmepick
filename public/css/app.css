@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-.shopper {
+shopper {
   text-transform: lowercase;
   font: 2em "Shopper", sans-serif;
   line-height: 0.5em;
