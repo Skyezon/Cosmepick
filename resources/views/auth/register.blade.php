@@ -43,6 +43,9 @@
 
         <a href={{route('login')}} class="bottom-txt"> <b>Already Have an Account? Log In</b> </a>
     </form>
+
+
 </div>
+<div style="height: 110vh"></div>
 
 @endsection

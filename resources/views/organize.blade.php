@@ -47,5 +47,37 @@
 <div id="button">
     <a href="upPhoto.html" class="next-button button1">Next</a>
 </div>
+
+{{-- photo upload --}}
+<div id="title">
+    <h1>Add Some Photos of Your Workshop</h1>       
+</div>
+<div id="title-content">
+    <h4>Photos are important to give your workshop an intereseting impression</h4>
+</div>
+
+<div id="body-container">
+    <div id="body-container0">
+        <input type="image">
+    </div>
+    
+    <div id="body-container1">
+        <input type="image">
+    </div>
+    <div id="body-container2">
+        <input type="image">
+    </div>
+    <div id="body-container3">
+        <input type="image">
+    </div>
+    <div id="body-container4">
+        <input type="image">
+    </div>
+</div>
+
+<div id="button">
+    <a href="termsncond.html" class="next-button button1">Next</a>
+</div>
+
     
 @endsection
