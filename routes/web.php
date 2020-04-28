@@ -1,9 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\ViewController;
-=======
->>>>>>> 85af49face04584342ea107f9a9f544f0d7bc783
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< HEAD
 Route::get('/', 'ViewController@home')->name('ViewHome');
 Route::get('/join','ViewController@join')->name('ViewJoin');
 Route::get('/organize','ViewController@organize')->name('ViewOrganize');
@@ -32,8 +28,3 @@ Route::get('/workshop/myclass','ViewController@myclass')->name('ViewMyclass');
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-=======
-Route::get('/', function () {
-    return view('welcome');
-});
->>>>>>> 85af49face04584342ea107f9a9f544f0d7bc783
