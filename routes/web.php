@@ -25,6 +25,7 @@ Route::get('/workshop/history','ViewController@history')->name('ViewHistory');
 Route::get('/workshop/myclass','ViewController@myclass')->name('ViewMyclass');
 
 
+// Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
