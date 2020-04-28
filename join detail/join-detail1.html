@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SangSang School Makeup Class</title>
+    <link rel="stylesheet" href="../join.css">
+</head>
+<body>
+    <!-- navbar -->
+    <div class="navbar-container">
+        <!-- left -->
+        <div class="navbar-left-container">
+            <div class="navbar-logo">
+                <a href="../home.html">
+                    <img class="logo-img" src="../assets/cosmepick logo crop.jpg" alt="">
+                </a>
+            </div>
+            <div class="navbar-text">
+                <a href="../home.html">Home</a>
+            </div>
+            <div class="navbar-text">
+                <a href="../join.html">Join</a>
+            </div>
+            <div class="navbar-text">
+                <a href="../info.html">Organize</a>
+            </div>
+            <div class="navbar-text">
+                <a href="../Profile.html">Profile</a>
+            </div>
+        </div>
+        <!-- right -->
+        <div class="navbar-right-container">
+            <div  class="navbar-text">
+                <a href="../login.html">Login</a>
+            </div>
+            <div class="search">
+                <label for="">
+                    <img class="search-img" src="../assets/search.png" alt="">
+                </label>
+                <input size="4" type="text" name="search" id="" placeholder="Search">
+            </div>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="detail-join-container">
+        <!-- image slideshow -->
+        <div class="slide-container">
+            <img class="join-slides" src="http://jakarta.sangsanguniv.com/wp-content/uploads/2017/09/KakaoTalk_20170908_175109453.jpg" alt="" style="width:100%">
+            <img class="join-slides" src="https://tallypress.com/wp-content/uploads/2018/01/top-10-beauty-academies-in-kl-selangor.jpg" alt="" style="width:100%">
+            <img class="join-slides" src="https://www.botanicadayspa.com/wp-content/uploads/2017/11/private-makeup-class.jpg" alt="" style="width:100%">
+
+            <button class="slide-button slide-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="slide-button slide-right" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+
+        <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+            
+            function plusDivs(n) {
+              showDivs(slideIndex += n);
+            }
+            
+            function showDivs(n) {
+              var i;
+              var x = document.getElementsByClassName("join-slides");
+              if (n > x.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+              }
+              x[slideIndex-1].style.display = "block";  
+            }
+        </script>
+
+        <!-- desc+join -->
+        <div class="detail-desc-container">
+            <!-- desc -->
+            <div class="desc-join">
+                <h2>
+                    SangSang School Makeup Class
+                </h2>
+                <b>Date: </b>Tuesday, 12/09/2017 <br>
+                <b>Address: </b>Graha STK – 1st Floor Jalan Taman Margasatwa Ragunan, Pasar Minggu, Jakarta Selatan <br>
+                <b>Price: </b>Rp50.000,00 <br>
+                <b>Duration: </b>2 hours <br>
+                <p>
+                    SangSang Makeup Class Batch 5 is open! 
+                    This class focuses on a lot of curriculums and skills
+                    related to the basics of makeup. Our instructor is 
+                    a certified professional. With only Rp50.000,00, 
+                    you can already join the makeup class at SangSang School. <br>
+                    For inquiries call: 081219765001 <br>
+                </p>
+            </div>
+            <!-- button -->
+            <div class="join-detail-btn">
+                <!-- wishlist -->
+                <div>
+                    <a href="">
+                        <img class="wishlist-btn" src="../assets/wishlist-btn.png" alt="">
+                    </a>
+                </div>
+                <!-- join -->
+                <div class="join-button-container">
+                    <a class="join-click" href="">
+                        Join the Class
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-container">
+        <!-- left -->
+        <div class="left-footer-container">
+            <div class="footer-logo">
+                <a href="../home.html">
+                    <img class="logo-img" src="../assets/logo footer.png" alt="">
+                </a>
+            </div>
+            <div>
+                <div>
+                    <a class="footer-link-left" href="../home.html">
+                        Home
+                    </a>
+                </div>
+                <div>
+                    <a class="footer-link-left" href="../join.html">
+                        Join Workshop
+                    </a>
+                </div>
+                <div>
+                    <a class="footer-link-left" href="../info.html">
+                        Organize Workshop
+                    </a>
+                </div>
+                <div>
+                    <a class="footer-link-left" href="../Profile.html">
+                        Profile
+                    </a>
+                </div>
+                <div>
+                    <a class="footer-link-left" href="">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- right -->
+        <div class="right-footer-container">
+            <div>
+                <a class="footer-link-right" href="http://www.facebook.com/">
+                    <img src="../assets/fb.png" alt="">
+                </a>
+            </div>
+            <div>
+                <a class="footer-link-right" href="http://www.instagram.com/">
+                    <img src="../assets/ig.png" alt="">
+                </a>
+            </div>
+            <div>
+                <a class="footer-link-right" href="http://www.youtube.com/">
+                    <img src="../assets/yt.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
