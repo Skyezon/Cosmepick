@@ -1,23 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.head')
+
+@section('title','Home')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+<div style="display: relative">
+    <div class="body-content">
+        <h2>
+            We recommend the best workshop that suits you. 
+            You can join a number of workshops of your choice or you can create your own workshop.
+        </h2>
+    </div>
+    
+    <div class="button">
+        <a href="./join.html" class="btn">Let's Get Started</a>
+    </div>
+    
+    <div class="image-1">
+        <img src={{ asset('assets/makeup.png') }} alt="">
     </div>
 </div>
+
 @endsection
+
+
