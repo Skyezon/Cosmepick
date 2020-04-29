@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,11 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href={{asset('css/app.css')}}>
 </head>
+
 <body>
+
     <header>
-       
-        <div class="navbar-container">
-     
+        <div class="navbar-container p-2">
             <div class="navbar-left-container">
                 <div class="navbar-logo">
                     <a href="">
@@ -31,9 +32,9 @@
                     <a href={{route('ViewProfile')}}>Profile</a>
                 </div>
             </div>
-         
+
             <div class="navbar-right-container">
-                <div  class="navbar-text">
+                <div class="navbar-text">
                     <a href={{route('login')}}>Login</a>
                 </div>
                 <div class="search">
@@ -44,13 +45,13 @@
                 </div>
             </div>
         </div>
-        </header>
+    </header>
 
-        @section('content')
-        @show
+    @section('content')
+    @show
 
     <div class="footer-container">
-        
+
         <div class="left-footer-container">
             <div class="footer-logo">
                 <a href="">
@@ -85,7 +86,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="right-footer-container">
             <div>
                 <a class="footer-link-right" href="http://www.facebook.com/">
@@ -104,7 +105,8 @@
             </div>
         </div>
     </div>
+    <script src={{asset('js/app.js')}}></script>
 
-    <script src="js/app.js"></script>
 </body>
+
 </html>
