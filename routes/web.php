@@ -24,6 +24,11 @@ Route::get('/workshop/upcoming','ViewController@upcoming')->name('ViewUpcoming')
 Route::get('/workshop/history','ViewController@history')->name('ViewHistory');
 Route::get('/workshop/myclass','ViewController@myclass')->name('ViewMyclass');
 
+Route::get('/login/google', 'Auth\OauthController@redirectToGoogle')->name('RedirectToGoogle');
+Route::get('/login/google/callback', 'Auth\OauthController@handleGoogleCallback')->name('GoogleCallback');
+
+Route::get('/login/facebook', 'Auth\OauthController@redirectToFacebook')->name('RedirectToFacebook');
+Route::get('/login/facebook/callback', 'Auth\OauthController@handleFacebookCallback')->name('FacebookCallback');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
