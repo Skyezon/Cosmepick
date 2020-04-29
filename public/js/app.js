@@ -37326,12 +37326,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // function on() {
-//     document.getElementById("overlay").style.display = "block";
-//   }
-//   function off() {
-//     document.getElementById("overlay").style.display = "none";
-//   }
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
 

@@ -458,10 +458,6 @@ td {
   align-items: center;
 }
 
-.hyperlink-text:hover {
-  color: white;
-}
-
 .detail-btn {
   color: black;
   background-color: white;
@@ -623,15 +619,12 @@ td {
 }
 
 .left-container {
-  /* margin-right: 75px; */
   color: gray;
   text-decoration: none;
-  /* padding-right: 75px; */
 }
 
 .left-container a {
   text-decoration: none;
-  /* padding-right: 75px; */
 }
 
 h2 {
@@ -1202,17 +1195,7 @@ h1 {
   color: white;
   border: 2px solid #47525E;
   border-radius: 5px;
-  width: 192px;
-  height: 50px;
-}
-
-.nag-button {
-  background-color: palevioletred;
-  color: white;
-  border: 2px solid #47525E;
-  border-radius: 5px;
-  width: 192px;
-  height: 50px;
+  padding: 1rem 2rem;
 }
 
 #button {
@@ -12272,5 +12255,19 @@ a.text-dark:focus {
 
 .navbar-container {
   height: 3.5rem;
+}
+
+.text-class:hover {
+  color: black;
+}
+
+a:visited,
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.button1 {
+  color: white !important;
 }
 

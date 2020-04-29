@@ -10,3 +10,20 @@
         height: 3.5rem;
     }
 }
+
+
+.text-class:hover{
+    
+    color: black;
+}
+
+a{
+    &:visited,&:link{
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.button1{
+    color: white !important;
+}

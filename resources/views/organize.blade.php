@@ -4,9 +4,9 @@
 
 @section('content')
 
-<form action="">
-<div id="workshop-form-1">
-    <div class="mt-4" id="title">
+<form action="" class="mt-5">
+<div id="workshop-form-1" >
+    <div id="title">
         <h1>You Can Organize A Workshop, But We Need Your Detail Information</h1>
     </div>
     
@@ -56,11 +56,11 @@
         <div id="title">
             <h1>Add Some Photos of Your Workshop</h1>       
         </div>
-        <div id="title-content">
+        <div id="title-content" class="my-5 ml-4">
             <h4>Photos are important to give your workshop an intereseting impression</h4>
         </div>
         
-        <div id="body-container">
+        <div id="body-container" class="mx-5">
             <div id="body-container0">
                 <input type="image">
             </div>
@@ -97,17 +97,17 @@
         </div>
         
         
-        <div id="content">
-            <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of this website. These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions.</p>
+        <div id="content" class="my-4 mx-5">
+            <span>These Website Standard Terms and Conditions written on this webpage shall manage your use of this website. These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions.</span>
         </div>
         
         
-        <div id="agree-button">
-            <a onclick="workshop(event)" class="ag-button">I Agree</a>
+        <div id="agree-button" class="d-flex justify-content-center align-items-center">
+            <a onclick="workshop(event)" class="ag-button button1">I Agree</a>
         </div>
         
-        <div id="nagree-button" class="mb-5">
-            <a href="" href={{route('ViewHome')}} class="nag-button">I Do Not Agree</a>
+        <div id="nagree-button" class="mb-5 d-flex justify-content-center align-items-center">
+            <a href="" href={{route('ViewHome')}} class="ag-button button1">I Do Not Agree</a>
         </div>
         
         
@@ -121,8 +121,8 @@
             <h1>Verification</h1>
         </div>
         
-        <div id="verifID-text">
-            <p>1. Verification of Identity Card</p>
+        <div id="verifID-text" class="ml-5 my-4">
+            <h2>1. Verification of Identity Card</h2>
         </div>
         
         

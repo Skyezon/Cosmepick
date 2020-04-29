@@ -41,7 +41,7 @@
                     <label for="">
                         <img class="search-img" src={{asset('assets/search.png')}} alt="">
                     </label>
-                    <input size="4" type="text" name="search" id="" placeholder="Search">
+                    <input size="4" type="text" name="search" id="" placeholder="Search class name">
                 </div>
             </div>
         </div>
