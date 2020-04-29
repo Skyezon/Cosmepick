@@ -979,13 +979,6 @@ h2{
 }
 
 
-.login-box {
-    // position: relative;
-    // height: 10rem;
-    // background: white;
-    // color: black;
-    // box-sizing: border-box;
-}
 
 .icon {
     width: 100px;
@@ -1073,8 +1066,7 @@ h1 {
     color: #47525e;
 }
 
-
-.login-box {
+.login-box{
     width: 320px;
     height: 500px;
     background: white;
@@ -1085,6 +1077,18 @@ h1 {
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
+}
+
+.forget-box {
+  
+    background: white;
+    color: black;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 1rem 2rem;
 }
 
 .icon {
@@ -1105,7 +1109,7 @@ h1 {
 
 .login-box input {
     width: 100%;
-    margin-bottom: 20px;
+
 }
 
 .textbox {

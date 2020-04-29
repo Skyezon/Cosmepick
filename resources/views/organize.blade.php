@@ -150,9 +150,9 @@
         
             </div>
         </div>
-        
+        {{-- ini tombol untuk submit form --}}
         <div id="button">
-            <a href="#" class="next-button button1" onclick="workshop(event)">Next</a>
+            <a href={{route('ViewWait')}} class="next-button button1">Next</a>
         </div>
     </div>
     

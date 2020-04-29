@@ -40,6 +40,6 @@
         <a href={{route('register')}} class="bottom-txt"> <b>Don't Have an Account? Sign Up</b> </a>
     </form>
 </div>
-<div style="height: 110vh"></div>
+<div style="height: 110vh; background-image: url('assets/wallpaper_login.jpg');background-size: cover;background-position: center"></div>
     
 @endsection

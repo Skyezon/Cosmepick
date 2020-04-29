@@ -3,7 +3,7 @@
 @section('title','Verification')
 
 @section('content')
-    
+    <div style="margin-top: 3rem"></div>
 <div id="title">
     <h2 class="title-text">2. Verification Process by CosmePick</h2>
 </div>
