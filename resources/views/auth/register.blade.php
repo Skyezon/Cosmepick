@@ -9,6 +9,7 @@
     <h1>Sign Up</h1>
 
     <form method="POST" action="{{ route('register') }}">
+    @csrf
 
         <input id="email" placeholder="Me@cosmepick.com" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
             value="{{ old('email') }}" required autocomplete="email">
