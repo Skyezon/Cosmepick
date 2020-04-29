@@ -8,7 +8,7 @@
     </div>
     @endif
     <form action="" class="d-flex justify-content-center a\lign-items-center flex-column p-4">
-        <input id="email" type="email" class="form-control my-4 @error('email') is-invalid @enderror" name="email"
+        <input placeholder="Enter your email" id="email" type="email" class="form-control my-4 @error('email') is-invalid @enderror" name="email"
             value="{{ old('email') }}" required autocomplete="email" autofocus>
 
         @error('email')
