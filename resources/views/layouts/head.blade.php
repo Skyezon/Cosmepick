@@ -35,7 +35,16 @@
 
             <div class="navbar-right-container">
                 <div class="navbar-text">
-                    <a href={{route('login')}}>Login</a>
+                    @guest
+                        <a href={{route('login')}}>Login</a>
+                    @endguest
+                    @auth
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit">Logout</button>
+                        </form>
+                    @endauth
+                    
                 </div>
                 <div class="search">
                     <label for="">

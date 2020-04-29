@@ -27,5 +27,5 @@ class OauthController extends Controller
     //twitter OAuth
 
 
-    private function 
+    // private function 
 }
