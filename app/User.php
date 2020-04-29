@@ -21,4 +21,8 @@ class User extends Authenticatable
     public function chosenWorkshops(){
         return $this->belongsToMany('App\Workshop', 'chosen_workshops')->withPivot('workshop_status');
     }
+
+    public static function findUser($email){
+        return User::where('email', $email)->first();
+    }
 }
