@@ -18,6 +18,7 @@ Route::get('/', 'ViewController@home')->name('ViewHome');
 Route::get('/join','ViewController@join')->name('ViewJoin');
 Route::get('/organize','ViewController@organize')->name('ViewOrganize');
 Route::get('/profile','ViewController@profile')->name('ViewProfile');
+Route::get('/wait','ViewController@wait')->name('ViewWait');
 
 Route::get('/workshop/wishlist','ViewController@wishlist')->name('ViewWishlist');
 Route::get('/workshop/upcoming','ViewController@upcoming')->name('ViewUpcoming');

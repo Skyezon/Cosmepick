@@ -39,4 +39,8 @@ class ViewController extends Controller
         return view('workshop.history');
     }
 
+    public function wait(){
+        return view('wait');
+    }
+
 }

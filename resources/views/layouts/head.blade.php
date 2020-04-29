@@ -8,6 +8,7 @@
     <link rel="stylesheet" href={{asset('css/app.css')}}>
 </head>
 <body>
+
     <header>
        
         <div class="navbar-container">
@@ -104,7 +105,7 @@
             </div>
         </div>
     </div>
+    <script src={{asset('js/app.js')}}></script>
 
-    <script src="js/app.js"></script>
 </body>
 </html>
