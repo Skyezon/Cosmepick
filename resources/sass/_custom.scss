@@ -1,4 +1,4 @@
-shopper {
+.shopper {
     text-transform: lowercase;
     font: 2em 'Shopper', sans-serif;
     line-height: 0.5em;
@@ -243,7 +243,6 @@ shopper {
     text-decoration: none;
     color: rgb(80, 80, 80);
     font-family: Arial, Helvetica, sans-serif;
-    padding: 3px 5px;
     border-bottom: 0.5px solid gray;
 }
 
@@ -264,7 +263,7 @@ shopper {
     align-items: center;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    /* padding: 16.5px; */
+    width: 13rem;
 }
 
 .logo-img{
@@ -273,6 +272,7 @@ shopper {
 
 .navbar-text a{
     text-decoration: none;
+    padding: 0.5rem;
     color: rgb(80, 80, 80);
 }
 
@@ -295,8 +295,10 @@ shopper {
 
 .search input{
     border: none;
-    font-size: 15px;
+    font-size: 1rem;
     padding: 2px;
+    width: 6rem;
+    transform: translateY(0.25rem);
 }
 
 /* Body */
@@ -1432,3 +1434,4 @@ h1 {
 .button1 {
     border-radius: 12px;
 }
+

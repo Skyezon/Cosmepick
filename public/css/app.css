@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-shopper {
+.shopper {
   text-transform: lowercase;
   font: 2em "Shopper", sans-serif;
   line-height: 0.5em;
@@ -244,7 +244,6 @@ a.qty:hover {
   text-decoration: none;
   color: #505050;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 3px 5px;
   border-bottom: 0.5px solid gray;
 }
 
@@ -265,7 +264,7 @@ a.qty:hover {
   align-items: center;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
-  /* padding: 16.5px; */
+  width: 13rem;
 }
 
 .logo-img {
@@ -274,6 +273,7 @@ a.qty:hover {
 
 .navbar-text a {
   text-decoration: none;
+  padding: 0.5rem;
   color: #505050;
 }
 
@@ -296,8 +296,10 @@ a.qty:hover {
 
 .search input {
   border: none;
-  font-size: 15px;
+  font-size: 1rem;
   padding: 2px;
+  width: 6rem;
+  transform: translateY(0.25rem);
 }
 
 /* Body */
@@ -12262,5 +12264,13 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+.navbar-text > a {
+  text-decoration: none;
+}
+
+.navbar-container {
+  height: 3.5rem;
 }
 
