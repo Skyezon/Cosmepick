@@ -43,4 +43,8 @@ class ViewController extends Controller
         return view('wait');
     }
 
+    public function workshopDetail(){
+        return view('workshopDetail');
+    }
+
 }

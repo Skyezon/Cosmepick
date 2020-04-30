@@ -669,8 +669,7 @@ h2 {
 }
 
 .slide-container img {
-  width: 100%;
-  height: auto;
+  height: 20rem;
 }
 
 .slide-container .slide-button:hover {
@@ -12279,5 +12278,9 @@ a:link {
 
 .button1 {
   color: white !important;
+}
+
+.slide-container > img {
+  max-width: initial;
 }
 

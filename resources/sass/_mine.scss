@@ -27,3 +27,10 @@ a{
 .button1{
     color: white !important;
 }
+
+.slide-container{
+
+    & > img{
+        max-width: initial;
+    }
+}

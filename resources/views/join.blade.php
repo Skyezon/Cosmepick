@@ -56,7 +56,7 @@
                 </p> 
             </div>
             <div class="right-container">
-                <a class="img-link" href="./join detail/join-detail1.html">
+                <a class="img-link" href={{route('ViewWorkshop')}}>
                     <img src="http://jakarta.sangsanguniv.com/wp-content/uploads/2017/09/KakaoTalk_20170908_175109453.jpg" alt="makeup1" class="class-img">
                 </a>            
             </div>
