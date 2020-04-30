@@ -34,7 +34,7 @@
         <div class="social-icons">
             <a href="{{route('RedirectToFacebook')}}"><img src="./assets/facebook.png"></a>
             <a href="{{route('RedirectToGoogle')}}"><img src="./assets/google.png"></a>
-            <a href="https://twitter.com/login"><img src="./assets/twitter.png"></a>
+            <a href={{route('RedirectToTwitter')}}><img src="./assets/twitter.png"></a>
         </div>
 
         <a href={{route('register')}} class="bottom-txt"> <b>Don't Have an Account? Sign Up</b> </a>

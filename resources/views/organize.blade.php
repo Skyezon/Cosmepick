@@ -45,10 +45,14 @@
     
     </div>
     
-    <div id="button">
-        <a href="#" class="next-button button1" onclick="workshop(event)" >Next</a>
+    <div>
+
+        <div id="button">
+            <a href="#" class="next-button button1" onclick="workshop(event)" >Next</a>
+        </div>
+        
     </div>
-    
+
 </div>
     
     {{-- photo upload --}}
@@ -78,10 +82,17 @@
                 <input type="image">
             </div>
         </div>
-        
-        <div id="button">
-            <a href="#" class="next-button button1" onclick="workshop(event)">Next</a>
+      
+        <div class="d-flex justify-content-center align-items-center">
+            <div id="button">
+                <a href="#" class="next-button button1"  onclick="revworkshop(event)" >Back</a>
+            </div>
+    
+            <div id="button">
+                <a href="#" class="next-button button1" onclick="workshop(event)">Next</a>
+            </div>
         </div>
+        
     </div>
    
     
@@ -101,14 +112,16 @@
             <span>These Website Standard Terms and Conditions written on this webpage shall manage your use of this website. These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions.</span>
         </div>
         
-        
-        <div id="agree-button" class="d-flex justify-content-center align-items-center">
-            <a onclick="workshop(event)" class="ag-button button1">I Agree</a>
+        <div>
+            <div id="agree-button" class="d-flex justify-content-center align-items-center">
+                <a onclick="workshop(event)" class="ag-button button1">I Agree</a>
+            </div>
+            
+            <div id="nagree-button" class="mb-5 d-flex justify-content-center align-items-center">
+                <a href="#" onclick="revworkshop(event)" class="ag-button button1">I Do Not Agree</a>
+            </div>
         </div>
         
-        <div id="nagree-button" class="mb-5 d-flex justify-content-center align-items-center">
-            <a href="" href={{route('ViewHome')}} class="ag-button button1">I Do Not Agree</a>
-        </div>
         
         
     </div>
@@ -151,9 +164,16 @@
             </div>
         </div>
         {{-- ini tombol untuk submit form --}}
-        <div id="button">
-            <a href={{route('ViewWait')}} class="next-button button1">Next</a>
+        <div class="d-flex justify-content-center align-items-center">
+            <div id="button">
+                <a href="#" class="next-button button1" onclick="revworkshop(event)">Back</a>
+            </div>
+    
+            <div id="button">
+                <a href={{route('ViewWait')}} class="next-button button1">Next</a>
+            </div>
         </div>
+       
     </div>
     
 </form>
@@ -165,15 +185,27 @@ for(let i = 2; i < 5;i++){
     document.getElementById(id).style.display = 'none'
 }
 
-let workshop = (e) =>{
+const workshop = (e) =>{
     console.log(e)
-    let  idBaca = e.target.parentElement.parentElement.id
+    let  idBaca = e.target.parentElement.parentElement.parentElement.id
     let angkaidBaca = parseInt(idBaca.substring(idBaca.length - 1)) + 1
     let idBaru = `workshop-form-${angkaidBaca}`
     console.log(idBaru)
     document.getElementById(idBaca).style.display = 'none'
     document.getElementById(idBaru).style.display = "block"
 }
+
+const revworkshop = (e) =>{
+    console.log(e)
+    let  idBaca = e.target.parentElement.parentElement.parentElement.id
+    let angkaidBaca = parseInt(idBaca.substring(idBaca.length - 1)) - 1
+    let idBaru = `workshop-form-${angkaidBaca}`
+    console.log(idBaru)
+    document.getElementById(idBaca).style.display = 'none'
+    document.getElementById(idBaru).style.display = "block"
+}
+
+
 
 </script>
     

@@ -30,7 +30,14 @@ class OauthController extends Controller
     }
 
     //twitter OAuth HERE
-    
+    public function redirectToTwitter(){
+        return Socialite::driver('twitter')->redirect();
+    }
+
+    public function handleTwitterCallback(){
+        $user = Socialite::driver('twitter')->stateless()->user();
+        return $this->directLogin($user);
+    }
 
     private function directLogin($user){
         $targetUser = User::findUser($user->email);

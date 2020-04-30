@@ -33,6 +33,9 @@ Route::prefix('auth')->group(function (){
 
     Route::get('facebook', 'Auth\OauthController@redirectToFacebook')->name('RedirectToFacebook');
     Route::get('facebook/callback', 'Auth\OauthController@handleFacebookCallback')->name('FacebookCallback');
+
+    Route::get('twitter', 'Auth\OauthController@redirectToTwitter')->name('RedirectToTwitter');
+    Route::get('twitter/callback','Auth\OauthController@handleTwitterCallback')->name('TwitterCallback');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
