@@ -16,19 +16,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'ViewController@home')->name('ViewHome');
 Route::get('join','ViewController@join')->name('ViewJoin');
-Route::get('organize','ViewController@organize')->name('ViewOrganize');
-Route::get('profile','ViewController@profile')->name('ViewProfile');
-Route::get('wait','ViewController@wait')->name('ViewWait');
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('organize','ViewController@organize')->name('ViewOrganize');
+    Route::get('profile','ViewController@profile')->name('ViewProfile');
+    Route::get('wait','ViewController@wait')->name('ViewWait');
+});
+
+
 
 Route::prefix('workshop')->group(function (){
-    Route::get('wishlist','ViewController@wishlist')->name('ViewWishlist');
-    Route::get('upcoming','ViewController@upcoming')->name('ViewUpcoming');
-    Route::get('history','ViewController@history')->name('ViewHistory');
-    Route::get('myclass','ViewController@myclass')->name('ViewMyclass');
+    Route::middleware(['auth'])->group((function (){
+        Route::get('wishlist','ViewController@wishlist')->name('ViewWishlist');
+        Route::get('upcoming','ViewController@upcoming')->name('ViewUpcoming');
+        Route::get('history','ViewController@history')->name('ViewHistory');
+        Route::get('myclass','ViewController@myclass')->name('ViewMyclass');
+    }));
+
     Route::get('detail','ViewController@workshopDetail')->name('ViewWorkshop');
 });
 
 Route::prefix('auth')->group(function (){
+
     Route::get('google', 'Auth\OauthController@redirectToGoogle')->name('RedirectToGoogle');
     Route::get('google/callback', 'Auth\OauthController@handleGoogleCallback')->name('GoogleCallback');
 

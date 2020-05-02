@@ -19,7 +19,6 @@ class CreateWorkshopsImagesTable extends Migration
             $table->string('url');
             $table->timestamps();
 
-            $table->foreign('workshop_id')->references('id')->on('workshops')->onDelete('cascade');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateWorkshopsImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_images');
+        Schema::dropIfExists('workshop_images');
     }
 }

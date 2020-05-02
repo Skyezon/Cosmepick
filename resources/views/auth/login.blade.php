@@ -9,6 +9,7 @@
     <h1>Log In</h1>
 
     <form method="POST" action="{{ route('login') }}">
+        @csrf
         <input id="email" type="email" placeholder="Me@cosmepick.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
         @error('email')
