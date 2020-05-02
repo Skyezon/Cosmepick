@@ -56,10 +56,10 @@
             </span>
         </div>
         <!-- button -->
-        <div class="join-detail-btn">
+        <div class="join-detail-btn mt-3">
             <!-- wishlist -->
-            <div>
-                <a href="">
+            <div >
+                <a href="#" class="d-flex">
                     <img class="wishlist-btn" src={{asset('assets/wishlist_btn.png')}} alt="wishlist-btn">
                 </a>
             </div>
