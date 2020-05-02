@@ -23,6 +23,7 @@ class CreateWorkshopsTable extends Migration
             $table->integer('duration');
             $table->string('instructor');
             $table->string('description');
+            $table->integer('is_verified')->default(2);
             $table->softDeletes();
             $table->timestamps();
         });

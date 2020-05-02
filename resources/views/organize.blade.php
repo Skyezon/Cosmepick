@@ -4,7 +4,8 @@
 
 @section('content')
 
-<form action="" class="mt-5">
+<form action="{{route('reqWorkshopVerification')}}" method="POST" class="mt-5" enctype="multipart/form-data">
+@csrf
 <div id="workshop-form-1" >
     <div id="title">
         <h1>You Can Organize A Workshop, But We Need Your Detail Information</h1>
@@ -13,39 +14,59 @@
     
     <div id="form-text">
         <label for="" class="text1">Workshop Name</label>
-        <input class="input" type="text" placeholder="Input Workshop Name">
+        <input class="input" name="workshopName" type="text" placeholder="Input Workshop Name">
+        @error('workshopName')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
         <br>
         <br>
         <label for="" class="text1">Workshop Category</label>
-        <input class="input" type="text" placeholder="Workshop Category">
+        <input class="input" name="workshopCategory" type="text" placeholder="Workshop Category">
+        @error('workshopCategory')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
         <br>
         <br>
         <label for="" class="text1">Location</label>
-        <input class="input" type="text" placeholder="Input Location">
+        <input class="input" name="workshopLocation" type="text" placeholder="Input Location">
+        @error('workshopLocation')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
         <br>
         <br>
         <label for="" class="text1">Date</label>
-        <input class="input" type="date">
+        <input class="input" name="scheduledDate" type="date">
+        @error('scheduledDate')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
         <br>
         <br>
         <label for="" class="text1">Price</label>
-        <input class="input" type="text" placeholder="Input Workshop Price">
+        <input class="input" name="workshopPrice" type="text" placeholder="Input Workshop Price">
+        @error('workshopPrice')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
         <br>
         <br>
         <label for="" class="text1">Duration</label>
-        <input class="input" type="text" placeholder="Input Workshop Duration">
+        <input class="input" name="workshopDuration" type="text" placeholder="Input Workshop Duration">
+        @error('workshopDuration')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
         <br>
         <br>
         <label for="" class="text1">Instructor</label>
-        <input class="input" type="text" placeholder="Input Instructor Name">
+        <input class="input" name="workshopInstructor" type="text" placeholder="Input Instructor Name">
+        @error('workshopInstructor')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
         <br>
         <br>
         <label for="" class="text1">Description</label>
-        <input class="input" type="text" placeholder="Input More Description">
-    
-    </div>
-    
-    <div>
+        <input class="input" name="workshopDescription" type="text" placeholder="Input More Description">
+        @error('workshopDescription')
+            <div class="text-danger">{{$message}}</div>
+        @enderror
 
         <div id="button">
             <a href="#" class="next-button button1" onclick="workshop(event)" >Next</a>
@@ -66,22 +87,40 @@
         
         <div id="body-container" class="mx-5">
             <div id="body-container0">
-                <input type="image">
+                <input name="workshopImgs[]" type="file" multiple>
+                @error('workshopImgs.0')
+                    <div class="text-danger align-center">{{$message}}</div>
+                @enderror
             </div>
-            
             <div id="body-container1">
-                <input type="image">
+                <input name="workshopImgs[]" type="file" multiple>
+                @error('workshopImgs.1')
+                    <div class="text-danger align-center">{{$message}}</div>
+                @enderror
             </div>
             <div id="body-container2">
-                <input type="image">
+                <input name="workshopImgs[]" type="file" multiple>
+                @error('workshopImgs.2')
+                    <div class="text-danger align-center">{{$message}}</div>
+                @enderror
             </div>
             <div id="body-container3">
-                <input type="image">
+                <input name="workshopImgs[]" type="file" multiple>
+                @error('workshopImgs.3')
+                    <div class="text-danger align-center">{{$message}}</div>
+                @enderror
             </div>
             <div id="body-container4">
-                <input type="image">
+                <input name="workshopImgs[]" type="file" multiple>
+                @error('workshopImgs.4')
+                    <div class="text-danger align-center">{{$message}}</div>
+                @enderror
             </div>
         </div>
+
+        @error('workshopImgs')
+            <div class="text-danger align-center">{{$message}}</div>
+        @enderror
       
         <div class="d-flex justify-content-center align-items-center">
             <div id="button">
@@ -146,7 +185,10 @@
                 </div>
                 
                 <div class="add-photo1">
-                    <input type="image">
+                    <input name="idOnlyImg" type="file">
+                    @error('idOnlyImg')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
         
             </div>
@@ -158,7 +200,10 @@
                 </div>
         
                 <div class="add-photo2">
-                    <input type="image">
+                    <input name="idWithUserImg" type="file">
+                    @error('idWithUserImg')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
         
             </div>
@@ -170,7 +215,7 @@
             </div>
     
             <div id="button">
-                <a href={{route('ViewWait')}} class="next-button button1">Next</a>
+                <button class="next-button button1">Next</button>
             </div>
         </div>
        
