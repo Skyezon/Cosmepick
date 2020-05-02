@@ -9,16 +9,16 @@
         <!-- photo -->
         <div id="profiledes-photos">
             <span class="welcome"><b>Welcome !</b></span>
-            <span> <img id="circle-photos" src="./assets/profile-photo.png" alt=""></span>
-            <span class="text-photo">User</span>
-            <span class="text-photo">Edit User</span>
+            <span> <img id="circle-photos" src={{asset($user->profile_pic_url)}} alt=""></span>
+        <span class="text-photo">{{$user->name ?? $user->email}}</span>
+            <a class="text-photo" href={{route('ViewEditProfile')}}>Edit User</a>
         </div>
 
         <!-- desc -->
         <div id="profiledes-des">
-            <span class="text-des">Phone : <b>021 - 033342343</b></span>
-            <span class="text-des">Email : <b>mygetbeautyty@gmail.com</b></span>
-            <span class="text-des">Website : <b>www.mygetbeauty67.com</b></span>
+        <span class="text-des">Phone : <b>{{$user->phone ?? 'Please update your phone number'}}</b></span>
+        <span class="text-des">Email : <b>{{$user->email}}</b></span>
+        <span class="text-des">Website : <b>{{$user->website ?? 'Please update your website'}}</b></span>
         </div>
 
 

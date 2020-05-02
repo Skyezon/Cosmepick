@@ -19,8 +19,10 @@ Route::get('join','ViewController@join')->name('ViewJoin');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('organize','ViewController@organize')->name('ViewOrganize');
-    Route::get('profile','ViewController@profile')->name('ViewProfile');
+    Route::get('profile','UserController@show')->name('ViewProfile');
     Route::get('wait','ViewController@wait')->name('ViewWait');
+    Route::get('profile/edit','UserController@showEdit')->name('ViewEditProfile');
+    Route::patch('profile/edit/baru','UserController@edit')->name('UpdateEditProfile');
 });
 
 

@@ -47,4 +47,8 @@ class ViewController extends Controller
         return view('workshopDetail');
     }
 
+    public function editProfile(){
+        return view('editProfile');
+    }
+
 }
