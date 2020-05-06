@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function() {
     Route::patch('profile/edit/baru','UserController@edit')->name('UpdateEditProfile');
 });
 
+Route::middleware(['auth.admin'])->group(function (){
+    Route::get('admin/verify/class','WorkshopController@showNotVerified')->name('viewAdminList');
+});
+
 
 Route::prefix('workshop')->group(function (){
     Route::middleware(['auth'])->group((function (){

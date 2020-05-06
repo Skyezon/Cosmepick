@@ -69,4 +69,9 @@ class WorkshopController extends Controller
             'description' => $request->workshopDescription
         ]);
     }
+
+    public function showNotVerified(){
+        $workshop = Workshop::all()->where('is_verified','2');
+        return view('admin_list',compact('workshop'));
+    }
 }

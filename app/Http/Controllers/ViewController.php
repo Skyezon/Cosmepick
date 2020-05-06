@@ -51,4 +51,8 @@ class ViewController extends Controller
         return view('editProfile');
     }
 
+    public function adminList(){
+        return view('admin_list');
+    }
+
 }
