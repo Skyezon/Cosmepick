@@ -42,7 +42,7 @@ class OauthController extends Controller
     private function directLogin($user){
         $targetUser = User::findUser($user->email);
         if($targetUser == null){
-            User::create([
+            $targetUser = User::create([
                 "email" => $user->email,
                 "password" => Hash::make("DummyAneh")
             ]);
