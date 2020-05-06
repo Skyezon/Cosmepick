@@ -26,9 +26,16 @@ Route::middleware(['auth'])->group(function() {
     Route::patch('profile/edit/baru','UserController@edit')->name('UpdateEditProfile');
 });
 
-Route::middleware(['auth.admin'])->group(function (){
-    Route::get('admin/verify/class','WorkshopController@showNotVerified')->name('viewAdminList');
+Route::prefix('admin')->group(function (){
+    Route::middleware(['auth.admin'])->group(function (){
+        Route::get('class-list','WorkshopController@showNotVerified')->name('viewAdminList');
+        Route::post('class-list/{id}','WorkshopController@verifyWorkshop')->name('verifyWorkshop');
+        Route::delete('class-list/{id}','WorkshopController@noVerifyWorkshop')->name('noVerifyWorkshop');
+        Route::get('class-list/{id}');
+    });
+    
 });
+
 
 
 Route::prefix('workshop')->group(function (){

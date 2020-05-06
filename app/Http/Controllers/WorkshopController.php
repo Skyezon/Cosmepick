@@ -6,6 +6,7 @@ use App\Http\Requests\VerifyWorkshopRequest;
 use App\UserImage;
 use App\Workshop;
 use App\WorkshopImage;
+use Illuminate\Support\Facades\Redirect;
 
 class WorkshopController extends Controller
 {
@@ -72,11 +73,25 @@ class WorkshopController extends Controller
     }
 
     public function showNotVerified(){
-        $workshop = Workshop::all()->where('is_verified','2');
-        return view('admin_list',compact('workshop'));
+        $workshops = Workshop::where('is_verified','2')->paginate(10);
+        return view('admin_list',compact('workshops'));
     }
-        
+
     private function attachUserAndWorkshop(Workshop $unverifiedWorkshop, $userId){
         $unverifiedWorkshop->chosenWorkshops()->attach($userId, ['workshop_status' => 'my_workshop']);
     }
+
+    public function verifyWorkshop($id){
+        $workshop = Workshop::find($id);
+        $workshop->is_verified = 1;
+        $workshop->save();
+        return back()->with('status','Succesfully verify workshop');
+    }
+
+    public function noVerifyWorkshop($id){
+        $workshop = Workshop::find($id);
+        $workshop->forceDelete();
+        return back()->with('delete','Succesfully Refuse workshop');
+    }
+
 }
