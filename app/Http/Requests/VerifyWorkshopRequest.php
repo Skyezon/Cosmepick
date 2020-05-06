@@ -29,7 +29,7 @@ class VerifyWorkshopRequest extends FormRequest
             'workshopLocation' => 'required',
             'scheduledDate' => 'required|date',
             'workshopPrice' => 'required|numeric',
-            'workshopDuration' => 'required|numeric',
+            'workshopDuration' => 'required|numeric|min:1|max:8',
             'workshopInstructor' => 'required',
             'workshopDescription' => 'required',
 

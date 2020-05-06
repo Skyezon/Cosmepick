@@ -11,6 +11,7 @@ class WorkshopController extends Controller
 {
     public function sendVerifyWorkshopReq(VerifyWorkshopRequest $request){
         $unverifiedWorkshop = $this->insertWorkshopReqData($request);
+        $this->attachUserAndWorkshop($unverifiedWorkshop, $request->user()->id);
         $this->storeWorkshopImg($unverifiedWorkshop->id, $request);
         $this->storeUserImg($unverifiedWorkshop->id, $request);
         return redirect(route('ViewWait'));
@@ -73,5 +74,9 @@ class WorkshopController extends Controller
     public function showNotVerified(){
         $workshop = Workshop::all()->where('is_verified','2');
         return view('admin_list',compact('workshop'));
+    }
+        
+    private function attachUserAndWorkshop(Workshop $unverifiedWorkshop, $userId){
+        $unverifiedWorkshop->chosenWorkshops()->attach($userId, ['workshop_status' => 'my_workshop']);
     }
 }
