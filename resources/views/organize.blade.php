@@ -14,56 +14,56 @@
     
     <div id="form-text">
         <label for="" class="text1">Workshop Name</label>
-        <input class="input" name="workshopName" type="text" placeholder="Input Workshop Name">
+        <input class="input" name="workshopName" type="text" value="{{old('workshopName')}}" placeholder="Input Workshop Name">
         @error('workshopName')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Workshop Category</label>
-        <input class="input" name="workshopCategory" type="text" placeholder="Workshop Category">
+        <input class="input" name="workshopCategory" type="text" value="{{old('workshopCategory')}}" placeholder="Workshop Category">
         @error('workshopCategory')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Location</label>
-        <input class="input" name="workshopLocation" type="text" placeholder="Input Location">
+        <input class="input" name="workshopLocation" type="text" value="{{old('workshopLocation')}}" placeholder="Input Location">
         @error('workshopLocation')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Date</label>
-        <input class="input" name="scheduledDate" type="date">
+        <input class="input" name="scheduledDate" type="date" value="{{old('scheduledDate')}}">
         @error('scheduledDate')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Price</label>
-        <input class="input" name="workshopPrice" type="text" placeholder="Input Workshop Price">
+        <input class="input" name="workshopPrice" type="text" value="{{old('workshopPrice')}}" placeholder="Input Workshop Price">
         @error('workshopPrice')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Duration</label>
-        <input class="input" name="workshopDuration" type="text" placeholder="Input Workshop Duration">
+        <input class="input" name="workshopDuration" type="text" value="{{old('workshopDuration')}}" placeholder="Input Workshop Duration (In Hours)">
         @error('workshopDuration')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Instructor</label>
-        <input class="input" name="workshopInstructor" type="text" placeholder="Input Instructor Name">
+        <input class="input" name="workshopInstructor" type="text" value="{{old('workshopInstructor')}}" placeholder="Input Instructor Name">
         @error('workshopInstructor')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Description</label>
-        <input class="input" name="workshopDescription" type="text" placeholder="Input More Description">
+        <input class="input" name="workshopDescription" type="text" value="{{old('workshopDescription')}}" placeholder="Input More Description">
         @error('workshopDescription')
             <div class="text-danger">{{$message}}</div>
         @enderror

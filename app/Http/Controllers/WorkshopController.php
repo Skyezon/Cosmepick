@@ -11,6 +11,7 @@ class WorkshopController extends Controller
 {
     public function sendVerifyWorkshopReq(VerifyWorkshopRequest $request){
         $unverifiedWorkshop = $this->insertWorkshopReqData($request);
+        $this->attachUserAndWorkshop($unverifiedWorkshop, $request->user()->id);
         $this->storeWorkshopImg($unverifiedWorkshop->id, $request);
         $this->storeUserImg($unverifiedWorkshop->id, $request);
         return redirect(route('ViewWait'));
@@ -68,5 +69,9 @@ class WorkshopController extends Controller
             'instructor' => $request->workshopInstructor,
             'description' => $request->workshopDescription
         ]);
+    }
+
+    private function attachUserAndWorkshop(Workshop $unverifiedWorkshop, $userId){
+        $unverifiedWorkshop->chosenWorkshops()->attach($userId, ['workshop_status' => 'my_workshop']);
     }
 }
