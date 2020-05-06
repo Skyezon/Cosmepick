@@ -14,7 +14,7 @@ class ChosenWorkshopSeeder extends Seeder
     {
         User::create([
             'name' => 'admin_cosmepick',
-            'email' => 'admin@cosmpick.com',
+            'email' => 'admin@cosmepick.com',
             'phone' => '08123456789',
             'website' => 'www.cosmpic.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
