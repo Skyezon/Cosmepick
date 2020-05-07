@@ -33,7 +33,7 @@ class ViewController extends Controller
 
     public function wishlist(){
         return view('workshop.wishlist', ['userWhistlistWorkshops' => 
-        $this->workshopController->showUserWhistlistWorkshop()]);
+        $this->workshopController->getUserWhistlistWorkshop()]);
     }
 
     public function upcoming(){
@@ -42,11 +42,13 @@ class ViewController extends Controller
 
     public function myclass(){
         return view('workshop.myclass', ['userCreatedWorkshops' => 
-        $this->workshopController->showUserCreatedWorkshop()]);
+        $this->workshopController->getUserCreatedWorkshop()]);
     }
 
     public function history(){
-        return view('workshop.history');
+        dd($this->workshopController->getTransactionHistory());
+        return view('workshop.history', ['userPurchasedWorkshop' => 
+        $this->workshopController->getTransactionHistory()]);
     }
 
     public function wait(){

@@ -44,6 +44,7 @@ Route::prefix('workshop')->group(function (){
         Route::get('wishlist/{id}', 'WorkshopController@removeWhistlistWorkshop')->name('removeFromWhistlist');
 
         Route::get('upcoming','ViewController@upcoming')->name('ViewUpcoming');
+
         Route::get('history','ViewController@history')->name('ViewHistory');
 
         Route::get('myclass','ViewController@myclass')->name('ViewMyclass');

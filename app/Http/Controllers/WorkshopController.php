@@ -96,17 +96,26 @@ class WorkshopController extends Controller
         return back()->with('delete','Succesfully Refuse workshop');
     }
 
-    public function showUserCreatedWorkshop(){
+    public function getUserCreatedWorkshop(){
         return Auth::user()->chosenWorkshops()
         ->where('is_verified', 1)
         ->wherePivot('workshop_status', 'my_workshop')
         ->get();
     }
 
-    public function showUserWhistlistWorkshop(){
+    public function getUserWhistlistWorkshop(){
         return Auth::user()->chosenWorkshops()
         ->where('is_verified', 1)
-        ->wherePivot();
+        ->wherePivot('workshop_status', 'wishlist')
+        ->get();
+    }
+
+    public function getTransactionHistory(){
+        return Auth::user()->chosenWorkshops()->withTrashed()
+        ->where('is_verified', 1)
+        // ->wherePivot('workshop_status', 'history')
+        ->orWherePivot('workshop_status', 'upcoming')
+        ->get();
     }
 
     public function softDeleteWorkshop($id){
