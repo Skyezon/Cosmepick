@@ -46,7 +46,7 @@ $factory->afterCreating(App\Workshop::class, function ($workshop, $faker) {
     ]));
     $workshop->userImages()->save(factory(App\UserImage::class)->create([
         'workshop_id' => $workshop->id,
-        'url_only_ktp' => $faker->image(public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/ktp'),400,300),
-        'url_with_ktp' => $faker->image(public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/with_ktp'),400,300) 
+        'url_only_ktp' => 'storage/workshops/workshop'.$workshop->id.'/workshopImages/'.$faker->image(public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/ktp'),400,300),
+        'url_with_ktp' => 'storage/workshops/workshop'.$workshop->id.'/workshopImages/'.$faker->image(public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/with_ktp'),400,300) 
     ]));
 });
