@@ -47,7 +47,7 @@
                         <div class="d-flex flex-column flex-nowrap ml-4">
                             <span>{{$workshop->date}}</span>
                             <span> {{$workshop->location}}</span>
-                            <span>{{$workshop->price}}</span>
+                            <span>Rp {{number_format($workshop->price,2,',','.')}}</span>
                             <span>{{$workshop->duration}} hours</span>
                         </div>
                     </div>

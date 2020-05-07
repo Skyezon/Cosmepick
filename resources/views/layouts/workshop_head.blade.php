@@ -35,8 +35,6 @@
           
         </div>
     </div>
- 
-    <a href="./Upcoming-Classes.html" class="btn btn-next">Next Page</a>
 </div>
 
 

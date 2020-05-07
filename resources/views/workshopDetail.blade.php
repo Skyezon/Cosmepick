@@ -44,7 +44,7 @@
             </h2>
         <b>Date: </b>{{$workshop->date}}<br>
         <b>Address: </b>{{$workshop->location}}<br>
-            <b>Price: </b>{{$workshop->price}} <br>
+            <b>Price: </b>Rp {{number_format($workshop->price,2,',','.')}} <br>
             <b>Duration: </b>{{$workshop->duration}} hours <br>
             <span>{{$workshop->description}}. <br>
                 For inquiries call: {{$user_phone}} <br>

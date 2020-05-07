@@ -108,7 +108,7 @@ class WorkshopController extends Controller
         return view('workshopDetail',['workshop' => $workshop,'user_phone' => $userPhone]);
     }
 
-    public function sgetUserCreatedWorkshop(){
+    public function getUserCreatedWorkshop(){
         return Auth::user()->chosenWorkshops()
         ->where('is_verified', 1)
         ->wherePivot('workshop_status', 'my_workshop')
@@ -138,6 +138,11 @@ class WorkshopController extends Controller
     public function removeWhistlistWorkshop(Workshop $workshop){
         Auth::user()->chosenWokshops()->detach($workshop->id);
         return redirect()->back();
+    }
+
+    public function edit(){
+        $userWorkshop = Auth::user()->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first();
+        return view('editWorkshop',['workshop' => $userWorkshop]);
     }
 
 }

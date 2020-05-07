@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function (){
 
 
 Route::prefix('workshop')->group(function (){
-    Route::get('{id}','WorkshopController@show')->name('ViewWorkshop');
+    Route::get('details/{id}','WorkshopController@show')->name('ViewWorkshop');
 
     Route::middleware(['auth'])->group((function (){
         Route::get('wishlist','ViewController@wishlist')->name('ViewWishlist');
@@ -50,6 +50,7 @@ Route::prefix('workshop')->group(function (){
         Route::get('history','ViewController@history')->name('ViewHistory');
 
         Route::get('myclass','ViewController@myclass')->name('ViewMyclass');
+        Route::get('myclass/edit','WorkshopController@edit')->name('showEditClass');
         Route::delete('myclass/{id}', 'WorkshopController@softDeleteWorkshop')->name('DeleteUserCreatedWorkshop');
     }));
 
