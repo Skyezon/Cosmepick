@@ -12,22 +12,22 @@ class ChosenWorkshopSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name' => 'admin_cosmepick',
-        //     'email' => 'admin@cosmepick.com',
-        //     'phone' => '08123456789',
-        //     'website' => 'www.cosmpic.com',
-        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        //     'role' => 1
-        // ]);
+        User::create([
+            'name' => 'admin_cosmepick',
+            'email' => 'admin@cosmepick.com',
+            'phone' => '08123456789',
+            'website' => 'www.cosmpic.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role' => 1
+        ]);
 
-        // User::create([
-        //     'name' => 'member_cosmepick',
-        //     'email' => 'member@cosmepick.com',
-        //     'phone' => '08123456789',
-        //     'website' => 'www.cosmepick.com',
-        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        // ]);
+        User::create([
+            'name' => 'member_cosmepick',
+            'email' => 'member@cosmepick.com',
+            'phone' => '08123456789',
+            'website' => 'www.cosmepick.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ]);
 
         factory(App\ChosenWorkshop::class, 25)->create();
     }
