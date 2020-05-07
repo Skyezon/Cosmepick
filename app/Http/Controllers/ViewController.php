@@ -46,7 +46,6 @@ class ViewController extends Controller
     }
 
     public function history(){
-        dd($this->workshopController->getTransactionHistory());
         return view('workshop.history', ['userPurchasedWorkshop' => 
         $this->workshopController->getTransactionHistory()]);
     }

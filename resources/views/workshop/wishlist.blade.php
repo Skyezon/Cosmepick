@@ -28,7 +28,7 @@
             </div>
 
             <div class="col col-vat col-numeric">
-                <p>{{$workshop->price}}</p>
+                <p>Rp {{number_format($workshop->price,2,',','.')}}</p>
             </div>
             <div class="col col-total col-numeric d-flex justify-content-around">
                 <a href="{{route('removeFromWhistlist', $workshop->id)}}" class="btn btn-danger">Delete</a>

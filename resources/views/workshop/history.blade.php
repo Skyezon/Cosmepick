@@ -28,7 +28,7 @@
             </div>
 
             <div class="col col-vat col-numeric">
-                <p>{{$workshop->price}}</p>
+                <p>Rp {{number_format($workshop->price,2,',','.')}}</p>
             </div>
         </div>
     @endforeach

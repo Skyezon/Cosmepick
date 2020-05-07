@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function (){
 
 
 Route::prefix('workshop')->group(function (){
-    Route::get('{id}','WorkshopController@show')->name('ViewWorkshop');
+    Route::get('details/{id}','WorkshopController@show')->name('ViewWorkshop');
 
     Route::middleware(['auth'])->group((function (){
         Route::get('wishlist','ViewController@wishlist')->name('ViewWishlist');
