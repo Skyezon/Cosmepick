@@ -12283,3 +12283,12 @@ a:link {
   max-width: initial;
 }
 
+.my-input,
+.my-input:focus {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  box-shadow: none;
+  border-radius: 0;
+}
+

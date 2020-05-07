@@ -42,14 +42,14 @@
         <br>
         <br>
         <label for="" class="text1">Price</label>
-        <input class="input" name="workshopPrice" type="text" value="{{old('workshopPrice')}}" placeholder="Input Workshop Price">
+        <input class="input" name="workshopPrice" type="number" min="0" value="{{old('workshopPrice')}}" placeholder="Input Workshop Price">
         @error('workshopPrice')
             <div class="text-danger">{{$message}}</div>
         @enderror
         <br>
         <br>
         <label for="" class="text1">Duration</label>
-        <input class="input" name="workshopDuration" type="text" value="{{old('workshopDuration')}}" placeholder="Input Workshop Duration (In Hours)">
+        <input class="input" name="workshopDuration" type="number" min="1" value="{{old('workshopDuration')}}" placeholder="Input Workshop Duration (In Hours)">
         @error('workshopDuration')
             <div class="text-danger">{{$message}}</div>
         @enderror
