@@ -21,32 +21,3 @@ $factory->define(Workshop::class, function (Faker $faker) {
     ];
 });
 
-$factory->afterCreating(App\Workshop::class, function ($workshop, $faker) {
-    $getWorkshop = $workshop->chosenWorkshops()->where('workshop_status','my_workshop')->first();
-    $userid = 1;
-    $getWorkshop != null ? $userid = $getWorkshop->user_id : $userid;
-    $path = array(
-        storage_path('app/public/workshops'),
-        storage_path('app/public/workshops/workshop'.$workshop->id),
-        storage_path('app/public/workshops/workshop'.$workshop->id.'/workshopImages'),
-        storage_path('app/public/workshops/workshop'.$workshop->id.'/user'.$userid),
-        storage_path('app/public/workshops/workshop'.$workshop->id.'/user'.$userid.'/ktp'),
-        storage_path('app/public/workshops/workshop'.$workshop->id.'/user'.$userid.'/with_ktp'),
-    );
-
-    for($i = 0 ; $i < sizeof($path); $i++){
-        if(!File::exists($path[$i])){
-            File::makeDirectory($path[$i]);
-        }
-    }
-
-    $workshop->workshopImages()->save(factory(App\WorkshopImage::class)->create([
-        'workshop_id' => $workshop->id,
-        'url' => '/storage/workshops/workshop'.$workshop->id.'/workshopImages/'.$faker->image($path[2],400,300,null,false)
-    ]));
-    $workshop->userImages()->save(factory(App\UserImage::class)->create([
-        'workshop_id' => $workshop->id,
-        'url_only_ktp' => '/storage/workshops/workshop'.$workshop->id.'/workshopImages/'.$faker->image(public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/ktp'),400,300,null,false),
-        'url_with_ktp' => '/storage/workshops/workshop'.$workshop->id.'/workshopImages/'.$faker->image(public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/with_ktp'),400,300,null,false) 
-    ]));
-});
