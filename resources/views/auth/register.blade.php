@@ -36,7 +36,7 @@
 
         <p class="or-txt">or</p> <br>
 
-        <div class="social-icopns">
+        <div class="social-icons">
             <a href="{{route('RedirectToFacebook')}}" ><img src="./assets/facebook.png"></a>
             <a href="{{route('RedirectToGoogle')}}"><img src="./assets/google.png"></a>
             <a href={{route('RedirectToTwitter')}}><img src="./assets/twitter.png"></a>

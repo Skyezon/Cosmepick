@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\WorkshopController;
 
 class ViewController extends Controller
 {
+    private $workshopController;
+
+    public function __construct()
+    {
+        $this->workshopController = new WorkshopController();
+    }
+
     public function home (){
         return view('home');
     }
@@ -24,7 +32,8 @@ class ViewController extends Controller
     }
 
     public function wishlist(){
-        return view('workshop.wishlist');
+        return view('workshop.wishlist', ['userWhistlistWorkshops' => 
+        $this->workshopController->showUserWhistlistWorkshop()]);
     }
 
     public function upcoming(){
@@ -32,7 +41,8 @@ class ViewController extends Controller
     }
 
     public function myclass(){
-        return view('workshop.myclass');
+        return view('workshop.myclass', ['userCreatedWorkshops' => 
+        $this->workshopController->showUserCreatedWorkshop()]);
     }
 
     public function history(){

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VerifyWorkshopRequest;
+use App\User;
 use App\UserImage;
 use App\Workshop;
 use App\WorkshopImage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,7 +24,7 @@ class WorkshopController extends Controller
     private function storeWorkshopImg($workshopId, $request){
         $idx = 1;
         foreach ($request->file('workshopImgs') as $image) {
-            $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
+            $path = '/storage/'.$image->store('/workshops/workshop'.$workshopId.'/workshopImages');
             $this->insertWorkshopImagePath($path, $workshopId);
             $idx++;
         }
@@ -37,8 +39,8 @@ class WorkshopController extends Controller
 
     private function storeUserImg($workshopId, $request){
         $paths = [
-            'onlyKtpPath' => $request->file('idOnlyImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/ktp'),
-            'withKtpPath' => $request->file('idWithUserImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/with_ktp'),
+            'onlyKtpPath' => '/storage/'.$request->file('idOnlyImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/ktp'),
+            'withKtpPath' => '/storage/'.$request->file('idWithUserImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/with_ktp'),
         ];
 
         $this->insertUserImagePath($paths, $workshopId);
@@ -104,6 +106,29 @@ class WorkshopController extends Controller
         $user = $workshop->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first();
         $user != null ? $userPhone = $user->phone :$userPhone = '08123456789';
         return view('workshopDetail',['workshop' => $workshop,'user_phone' => $userPhone]);
+    }
+
+    public function showUserCreatedWorkshop(){
+        return Auth::user()->chosenWorkshops()
+        ->where('is_verified', 1)
+        ->wherePivot('workshop_status', 'my_workshop')
+        ->get();
+    }
+
+    public function showUserWhistlistWorkshop(){
+        return Auth::user()->chosenWorkshops()
+        ->where('is_verified', 1)
+        ->wherePivot();
+    }
+
+    public function softDeleteWorkshop($id){
+        Workshop::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function removeWhistlistWorkshop(Workshop $workshop){
+        Auth::user()->chosenWokshops()->detach($workshop->id);
+        return redirect()->back();
     }
 
 }

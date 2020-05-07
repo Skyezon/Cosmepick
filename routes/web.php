@@ -43,9 +43,13 @@ Route::prefix('workshop')->group(function (){
 
     Route::middleware(['auth'])->group((function (){
         Route::get('wishlist','ViewController@wishlist')->name('ViewWishlist');
+        Route::get('wishlist/{id}', 'WorkshopController@removeWhistlistWorkshop')->name('removeFromWhistlist');
+
         Route::get('upcoming','ViewController@upcoming')->name('ViewUpcoming');
         Route::get('history','ViewController@history')->name('ViewHistory');
+
         Route::get('myclass','ViewController@myclass')->name('ViewMyclass');
+        Route::delete('myclass/{id}', 'WorkshopController@softDeleteWorkshop')->name('DeleteUserCreatedWorkshop');
     }));
 
 });
