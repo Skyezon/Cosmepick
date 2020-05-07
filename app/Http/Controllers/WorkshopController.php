@@ -7,6 +7,7 @@ use App\UserImage;
 use App\Workshop;
 use App\WorkshopImage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class WorkshopController extends Controller
 {
@@ -90,6 +91,13 @@ class WorkshopController extends Controller
 
     public function noVerifyWorkshop($id){
         $workshop = Workshop::find($id);
+        $userImage = UserImage::where('workshop_id',$id)->first();
+        $workshopImages = WorkshopImage::where('workshop_id',$id);
+        foreach($workshopImages as $image){
+            Storage::delete($image->url);
+        }
+        Storage::delete($userImage->url_only_ktp);
+        Storage::delete($userImage->url_with_ktp);
         $workshop->forceDelete();
         return back()->with('delete','Succesfully Refuse workshop');
     }
