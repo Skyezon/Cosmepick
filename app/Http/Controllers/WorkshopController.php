@@ -125,8 +125,10 @@ class WorkshopController extends Controller
     public function getTransactionHistory(){
         return Auth::user()->chosenWorkshops()->withTrashed()
         ->where('is_verified', 1)
-        // ->wherePivot('workshop_status', 'history')
-        ->orWherePivot('workshop_status', 'upcoming')
+        ->where(function ($query){
+            $query->where('workshop_status', 'history')
+            ->orWhere('workshop_status', 'upcoming');
+        })
         ->get();
     }
 
