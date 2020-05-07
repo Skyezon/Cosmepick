@@ -28,10 +28,10 @@
             </div>
 
             <div class="col col-vat col-numeric">
-                <p>{{$workshop->price}}</p>
+                <p>Rp {{number_format($workshop->price,2,',','.')}}</p>
             </div>
             <div class="col col-total col-numeric d-flex justify-content-around">
-                <a href="" class="btn btn-default">Edit</a>
+                <a href={{route('showEditClass')}} class="btn btn-primary text-light w-50">Edit</a>
                 <form action="{{route('DeleteUserCreatedWorkshop', $workshop->id)}}" method="post">
                     @csrf
                     @method('DELETE')

@@ -50,6 +50,7 @@ Route::prefix('workshop')->group(function (){
         Route::get('history','ViewController@history')->name('ViewHistory');
 
         Route::get('myclass','ViewController@myclass')->name('ViewMyclass');
+        Route::get('myclass/edit','WorkshopController@edit')->name('showEditClass');
         Route::delete('myclass/{id}', 'WorkshopController@softDeleteWorkshop')->name('DeleteUserCreatedWorkshop');
     }));
 
