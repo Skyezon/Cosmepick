@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'ViewController@home')->name('ViewHome');
-Route::get('join','ViewController@join')->name('ViewJoin');
+Route::get('join','WorkshopController@index')->name('ViewJoin');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('organize','ViewController@organize')->name('ViewOrganize');
@@ -39,6 +39,8 @@ Route::prefix('admin')->group(function (){
 
 
 Route::prefix('workshop')->group(function (){
+    Route::get('{id}','WorkshopController@show')->name('ViewWorkshop');
+
     Route::middleware(['auth'])->group((function (){
         Route::get('wishlist','ViewController@wishlist')->name('ViewWishlist');
         Route::get('upcoming','ViewController@upcoming')->name('ViewUpcoming');
@@ -46,7 +48,6 @@ Route::prefix('workshop')->group(function (){
         Route::get('myclass','ViewController@myclass')->name('ViewMyclass');
     }));
 
-    Route::get('detail','ViewController@workshopDetail')->name('ViewWorkshop');
 });
 
 Route::prefix('auth')->group(function (){
