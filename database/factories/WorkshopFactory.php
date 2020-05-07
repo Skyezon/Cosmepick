@@ -26,12 +26,12 @@ $factory->afterCreating(App\Workshop::class, function ($workshop, $faker) {
     $userid = 1;
     $getWorkshop != null ? $userid = $getWorkshop->user_id : $userid;
     $path = array(
-        public_path('storage/workshops'),
-        public_path('storage/workshops/workshop'.$workshop->id),
-        public_path('storage/workshops/workshop'.$workshop->id.'/workshopImages'),
-        public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid),
-        public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/ktp'),
-        public_path('storage/workshops/workshop'.$workshop->id.'/user'.$userid.'/with_ktp'),
+        storage_path('app/public/workshops'),
+        storage_path('app/public/workshops/workshop'.$workshop->id),
+        storage_path('app/public/workshops/workshop'.$workshop->id.'/workshopImages'),
+        storage_path('app/public/workshops/workshop'.$workshop->id.'/user'.$userid),
+        storage_path('app/public/workshops/workshop'.$workshop->id.'/user'.$userid.'/ktp'),
+        storage_path('app/public/workshops/workshop'.$workshop->id.'/user'.$userid.'/with_ktp'),
     );
 
     for($i = 0 ; $i < sizeof($path); $i++){
