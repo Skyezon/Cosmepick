@@ -21,8 +21,7 @@ class WorkshopController extends Controller
     private function storeWorkshopImg($workshopId, $request){
         $idx = 1;
         foreach ($request->file('workshopImgs') as $image) {
-            $imageName = "workshop_id_".$workshopId."_image_".$idx.'.'.$image->getClientOriginalExtension();
-            $path = 'storage/'.$image->storeAs('workshops/workshop'.$workshopId.'/workshopImages', $imageName);
+            $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
             $this->insertWorkshopImagePath($path, $workshopId);
             $idx++;
         }
@@ -36,16 +35,9 @@ class WorkshopController extends Controller
     }
 
     private function storeUserImg($workshopId, $request){
-        $userImgs = [
-            "onlyKtpImg" => "workshop_id_".$workshopId."_user_id_".$request->user()->id."_only_ktp.".
-                $request->file('idOnlyImg')->getClientOriginalExtension(),
-            "withKtpImg" => "workshop_id_".$workshopId."_user_id_".$request->user()->id."_with_ktp.".
-                $request->file('idWithUserImg')->getClientOriginalExtension()
-        ];
-
         $paths = [
-            'onlyKtpPath' => 'storage/'.$request->file('idOnlyImg')->storeAs('workshops/workshop'.$workshopId.'/userImages', $userImgs['onlyKtpImg']),
-            'withKtpPath' => 'storage/'.$request->file('idWithUserImg')->storeAs('workshops/workshop'.$workshopId.'/userImages', $userImgs['withKtpImg']),
+            'onlyKtpPath' => $request->file('idOnlyImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/ktp'),
+            'withKtpPath' => $request->file('idWithUserImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/with_ktp'),
         ];
 
         $this->insertUserImagePath($paths, $workshopId);
