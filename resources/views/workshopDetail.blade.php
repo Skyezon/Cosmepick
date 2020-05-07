@@ -7,10 +7,10 @@
 <div class="detail-join-container">
   
     <div class="slide-container">
-        <img class="join-slides" src="http://jakarta.sangsanguniv.com/wp-content/uploads/2017/09/KakaoTalk_20170908_175109453.jpg" alt="">
-        <img class="join-slides" src="https://tallypress.com/wp-content/uploads/2018/01/top-10-beauty-academies-in-kl-selangor.jpg" alt="">
-        <img class="join-slides" src="https://www.botanicadayspa.com/wp-content/uploads/2017/11/private-makeup-class.jpg" alt="">
-
+        @foreach ($workshop->workshopImages as $image)
+        <img class="join-slides" src={{asset($image->url)}} alt="">
+            
+        @endforeach
         <button class="slide-button slide-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="slide-button slide-right" onclick="plusDivs(1)">&#10095;</button>
     </div>
@@ -40,19 +40,14 @@
         <!-- desc -->
         <div class="desc-join">
             <h2>
-                SangSang School Makeup Class
+                {{$workshop->name}}
             </h2>
-            <b>Date: </b>Tuesday, 12/09/2017 <br>
-            <b>Address: </b>Graha STK – 1st Floor Jalan Taman Margasatwa Ragunan, Pasar Minggu, Jakarta Selatan <br>
-            <b>Price: </b>Rp50.000,00 <br>
-            <b>Duration: </b>2 hours <br>
-            <span>
-                SangSang Makeup Class Batch 5 is open! 
-                This class focuses on a lot of curriculums and skills
-                related to the basics of makeup. Our instructor is 
-                a certified professional. With only Rp50.000,00, 
-                you can already join the makeup class at SangSang School. <br>
-                For inquiries call: 081219765001 <br>
+        <b>Date: </b>{{$workshop->date}}<br>
+        <b>Address: </b>{{$workshop->location}}<br>
+            <b>Price: </b>{{$workshop->price}} <br>
+            <b>Duration: </b>{{$workshop->duration}} hours <br>
+            <span>{{$workshop->description}}. <br>
+                For inquiries call: {{$user_phone}} <br>
             </span>
         </div>
         <!-- button -->

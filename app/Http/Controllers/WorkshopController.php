@@ -96,7 +96,19 @@ class WorkshopController extends Controller
         return back()->with('delete','Succesfully Refuse workshop');
     }
 
-    public function getUserCreatedWorkshop(){
+    public function index(){
+        $workshops = Workshop::paginate(5);
+        return view('join',compact('workshops'));
+    }
+
+    public function show($id){
+        $workshop = Workshop::find($id);
+        $user = $workshop->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first();
+        $user != null ? $userPhone = $user->phone :$userPhone = '08123456789';
+        return view('workshopDetail',['workshop' => $workshop,'user_phone' => $userPhone]);
+    }
+
+    public function sgetUserCreatedWorkshop(){
         return Auth::user()->chosenWorkshops()
         ->where('is_verified', 1)
         ->wherePivot('workshop_status', 'my_workshop')
