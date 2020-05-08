@@ -94,15 +94,16 @@ class WorkshopController extends Controller
         return back()->with('status','Succesfully verify workshop');
     }
 
-    public static function noVerifyWorkshop($id){
+    public function noVerifyWorkshop($id){
         $workshop = Workshop::find($id);
         $userImage = UserImage::where('workshop_id',$id)->first();
         $workshopImages = WorkshopImage::where('workshop_id',$id);
         foreach($workshopImages as $image){
-            Storage::delete($image->url);
+            Storage::delete('public/'.$image->url);
         }
-        Storage::delete($userImage->url_only_ktp);
-        Storage::delete($userImage->url_with_ktp);
+        // dd('public/'.$userImage->url_only_ktp);
+        Storage::delete('public/'.$userImage->url_only_ktp);
+        Storage::delete('public/'.$userImage->url_with_ktp);
         $workshop->forceDelete();
         return back()->with('delete','Succesfully Refuse workshop');
     }
