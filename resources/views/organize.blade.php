@@ -87,31 +87,38 @@
         
         <div id="body-container" class="mx-5">
             <div id="body-container0">
-                <input name="workshopImgs[]" type="file" multiple>
+                <input id="workshop-input-0" name="workshopImgs[]" type="file" multiple>
+                <img id="workshopImg-0" src="#" alt="workshopImg-0" />
                 @error('workshopImgs.0')
                     <div class="text-danger align-center">{{$message}}</div>
                 @enderror
             </div>
             <div id="body-container1">
-                <input name="workshopImgs[]" type="file" multiple>
+                <input id="workshop-input-1" name="workshopImgs[]" type="file" multiple>
+                <img id="workshopImg-1" src="#" alt="workshopImg-1" />
                 @error('workshopImgs.1')
                     <div class="text-danger align-center">{{$message}}</div>
                 @enderror
             </div>
             <div id="body-container2">
-                <input name="workshopImgs[]" type="file" multiple>
+                <input id="workshop-input-2" name="workshopImgs[]" type="file" multiple>
+                <img id="workshopImg-2" src="#" alt="workshopImg-2" />
+
                 @error('workshopImgs.2')
                     <div class="text-danger align-center">{{$message}}</div>
                 @enderror
             </div>
             <div id="body-container3">
-                <input name="workshopImgs[]" type="file" multiple>
+                <input id="workshop-input-3" name="workshopImgs[]" type="file" multiple>
+                <img id="workshopImg-3" src="#" alt="workshopImg-3" />
+
                 @error('workshopImgs.3')
                     <div class="text-danger align-center">{{$message}}</div>
                 @enderror
             </div>
             <div id="body-container4">
-                <input name="workshopImgs[]" type="file" multiple>
+                <input id="workshop-input-4" name="workshopImgs[]" type="file" multiple>
+                <img id="workshopImg-4" src="#" alt="workshopImg-4" />
                 @error('workshopImgs.4')
                     <div class="text-danger align-center">{{$message}}</div>
                 @enderror
@@ -184,8 +191,9 @@
                     <p class="left-text">Photo of Your ID Card</p>
                 </div>
                 
-                <div class="add-photo1">
-                    <input name="idOnlyImg" type="file">
+                <div class="add-photo">
+                    <input name="idOnlyImg" id="idOnlyImg-input-1" type="file">
+                    <img src="#" alt="idOnlyImg-1" id="idOnlyImg-1">
                     @error('idOnlyImg')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -199,8 +207,9 @@
                     <p class="right-text">Photo of Yourself with an ID Card</p>
                 </div>
         
-                <div class="add-photo2">
-                    <input name="idWithUserImg" type="file">
+                <div class="add-photo">
+                    <input name="idWithUserImg" id="idOnlyImg-input-2" type="file">
+                    <img src="#" alt="idOnlyImg-2" id="idOnlyImg-2">
                     @error('idWithUserImg')
                         <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -235,7 +244,7 @@ const workshop = (e) =>{
     let  idBaca = e.target.parentElement.parentElement.parentElement.id
     let angkaidBaca = parseInt(idBaca.substring(idBaca.length - 1)) + 1
     let idBaru = `workshop-form-${angkaidBaca}`
-    console.log(idBaru)
+
     document.getElementById(idBaca).style.display = 'none'
     document.getElementById(idBaru).style.display = "block"
 }
@@ -245,11 +254,63 @@ const revworkshop = (e) =>{
     let  idBaca = e.target.parentElement.parentElement.parentElement.id
     let angkaidBaca = parseInt(idBaca.substring(idBaca.length - 1)) - 1
     let idBaru = `workshop-form-${angkaidBaca}`
-    console.log(idBaru)
+
     document.getElementById(idBaca).style.display = 'none'
     document.getElementById(idBaru).style.display = "block"
 }
 
+
+displayImage = (input,image,i) => {
+    image.src == window.location.href ? image.style.display= ' none' : console.log('jalan'); 
+    input.addEventListener('change',() =>{
+            image.style.display = 'block'
+            image.style.maxHeight = '200px'
+            image.style.maxWidth = '300px'
+
+            readURL(input,i,image);
+     })
+
+     input.addEventListener('load', () =>{
+        if(image.src == window.location.href){
+            console.log('jalan')
+            
+        }else{
+            readURL(input,i,image)
+        }
+     })
+}
+
+function readURL(input,id,image) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            image.setAttribute('src', e.target.result);
+    
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+
+}
+
+
+for(let i = 0 ;i < 5;i++){
+    // $("#workshop-input-"+ i).change(function(){
+    // });
+    let input =  document.getElementById('workshop-input-' + i)
+    let image  = document.getElementById('workshopImg-' + i);
+        displayImage(input,image,i);
+    
+}
+
+for(let i = 1 ; i < 3; i++){
+    let input =  document.getElementById('idOnlyImg-input-' + i)
+    let image  = document.getElementById('idOnlyImg-' + i);
+    displayImage(input,image,i);
+
+
+}
 
 
 </script>
