@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
 
 class VerifyWorkshopRequest extends FormRequest
 {
@@ -27,7 +28,10 @@ class VerifyWorkshopRequest extends FormRequest
             'workshopName' => 'required|min:6',
             'workshopCategory' => 'required',
             'workshopLocation' => 'required',
-            'scheduledDate' => 'required|date',
+            // 'scheduledDate' => 'required|date',
+            function ($attribute, $value, $fail){
+                $currDate = Carbon::now();
+            },
             'workshopPrice' => 'required|numeric',
             'workshopDuration' => 'required|numeric|min:1|max:8',
             'workshopInstructor' => 'required',

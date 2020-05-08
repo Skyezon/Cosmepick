@@ -23,7 +23,7 @@ class WorkshopController extends Controller
 
     private function storeWorkshopImg($workshopId, $request){
         foreach ($request->file('workshopImgs') as $image) {
-            $path = '/storage/'.$image->store('/workshops/workshop'.$workshopId.'/workshopImages');
+            $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
             $this->insertWorkshopImagePath($path, $workshopId);
         }
     }
@@ -50,8 +50,8 @@ class WorkshopController extends Controller
 
     private function storeUserImg($workshopId, $request){
         $paths = [
-            'onlyKtpPath' => '/storage/'.$request->file('idOnlyImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/ktp'),
-            'withKtpPath' => '/storage/'.$request->file('idWithUserImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/with_ktp'),
+            'onlyKtpPath' => $request->file('idOnlyImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/ktp'),
+            'withKtpPath' => $request->file('idWithUserImg')->store('/workshops/workshop'.$workshopId.'/user'.$request->user()->id.'/with_ktp'),
         ];
 
         $this->insertUserImagePath($paths, $workshopId);
