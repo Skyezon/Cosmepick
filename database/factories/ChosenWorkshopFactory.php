@@ -40,7 +40,8 @@ $factory->afterCreating(App\ChosenWorkshop::class, function ($chosenWorkshop, $f
 
     $workshop->workshopImages()->save(factory(App\WorkshopImage::class)->create([
         'workshop_id' => $workshop->id,
-        'url' => 'workshops/workshop'.$workshop->id.'/workshopImages/'.$faker->picsum($path[2],400,300,null,false)
+        'url' => 'workshops/workshop'.$workshop->id.'/workshopImages/'.$faker->picsum($path[2],400,300,null,false),
+        'index' => 0
     ]));
     $workshop->userImages()->save(factory(App\UserImage::class)->create([
         'workshop_id' => $workshop->id,

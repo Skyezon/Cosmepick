@@ -7,7 +7,9 @@
     <div class="d-flex justify-content-center align-items-center">
         <h1 class="font-weight-bold mb-0">Edit Class</h1>
     </div>
-    <form class="form-group d-flex flex-column justify-content-center ">
+    <form action={{route('editClass')}} class="form-group d-flex flex-column justify-content-center " enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
         <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
             <div class="text-center">
                 <label for="name" class="mb-2 text-center">Nama</label>
@@ -95,7 +97,7 @@
             @if($workshopImages->first() != null)
             <label for="workshop-image-input-{{$i}}" style="cursor: pointer;" class="btn btn-primary">Change Image ?</label>
             <input type="file" pl name="workshopImg[]" class="d-none" id="workshop-image-input-{{$i}}" onchange="addText(event)">
-            <img class="mt-3" id="workshop-image-{{$i}}" src={{asset($workshopImages->shift()->url)}} alt="workshop-image-{{$i}}">
+            <img class="mt-3" id="workshop-image-{{$i}}" src={{asset('storage/'.$workshopImages->shift()->url)}} alt="workshop-image-{{$i}}">
           @else
             <input type="file" name="workshopImg[]" id="workshop-image-input-{{$i}}">
             <img src="#" id="workshop-image-{{$i}}" class="mt-3" alt="workshop-image-{{$i}}">

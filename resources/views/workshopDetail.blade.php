@@ -8,7 +8,7 @@
   
     <div class="slide-container">
         @foreach ($workshop->workshopImages as $image)
-        <img class="join-slides" src={{asset($image->url)}} alt="">
+        <img class="join-slides" src={{asset('storage/'.$image->url)}} alt="">
             
         @endforeach
         <button class="slide-button slide-left" onclick="plusDivs(-1)">&#10094;</button>

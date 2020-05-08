@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VerfiyWorkshopEditRequest;
 use App\Http\Requests\VerifyWorkshopRequest;
 use App\User;
 use App\UserImage;
@@ -28,9 +29,22 @@ class WorkshopController extends Controller
         }
     }
 
+    private function updateWorkshopImg($workshopId, $request){
+        foreach ($request->file('workshopImgs') as $image) {
+            $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
+            $this->insertWorkshopImagePath($path, $workshopId);
+        }
+        $workshopImagesRequest = $request->file('workshopImgs');
+        for ($i = 0 ;$i < 5; $i++){
+            if($workshopImagesRequest[$i] == null){
+
+            }
+        }
+    }
+
     private function deleteWorkshopImg($workshopImgId){
         $workshopImage = WorkshopImage::find($workshopImgId);
-        Storage::delete('');
+        Storage::delete('public/'.$workshopImage->url);
     }
 
     private function insertWorkshopImagePath($path, $workshopId){
@@ -42,7 +56,7 @@ class WorkshopController extends Controller
 
     private function updateWorkshopImagePath($id,$path, $workshopId){
         $workshop = Workshop::find($id);
-        $workshop->update([
+       return $workshop->update([
             'workshop_id' => $workshopId,
             'url' => $path
         ]);
@@ -75,6 +89,24 @@ class WorkshopController extends Controller
             'duration' => $request->workshopDuration,
             'instructor' => $request->workshopInstructor,
             'description' => $request->workshopDescription
+        ]);
+    }
+
+    public function editPost(VerfiyWorkshopEditRequest $request){
+        
+    }
+
+    public function editWorkshop($request, $id){
+        $workshop = Workshop::find($id);
+        return $workshop->update([
+            'name' => $request->name,
+            'category' => $request->category,
+            'location' => $request->location,
+            'date' => $request->date,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'instructor' => $request->instructor,
+            'description' => $request->description
         ]);
     }
 
@@ -160,8 +192,6 @@ class WorkshopController extends Controller
         return view('editWorkshop',['workshop' => $userWorkshop,'workshopImages' => $userWorkshop->workshopImages, 'firstImageId' => $firstImageworkshopId]);
     }
 
-    public function editPost(){
-        
-    }
+
 
 }
