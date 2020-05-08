@@ -46,11 +46,12 @@ Route::prefix('workshop')->group(function (){
         Route::get('wishlist/{id}', 'WorkshopController@removeWhistlistWorkshop')->name('removeFromWhistlist');
 
         Route::get('upcoming','ViewController@upcoming')->name('ViewUpcoming');
-
+        
         Route::get('history','ViewController@history')->name('ViewHistory');
 
         Route::get('myclass','ViewController@myclass')->name('ViewMyclass');
         Route::get('myclass/edit','WorkshopController@editShow')->name('showEditClass');
+
         Route::delete('myclass/{id}', 'WorkshopController@softDeleteWorkshop')->name('DeleteUserCreatedWorkshop');
         Route::patch('myclass/edit/{id}','WorkshopContrller@editPost')->name('editClass');
     }));

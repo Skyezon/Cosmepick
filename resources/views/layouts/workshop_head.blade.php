@@ -22,8 +22,8 @@
             <div class="col col-qty align-center">Location</div>
             <div class="col align-center">Duration (Hours)</div>
             <div class="col align-center">Price</div>
-            @if (Request::url() != route('ViewHistory'))
-                <div class="col align-center">Action</div>    
+            @if (Request::url() != route('ViewHistory') && Request::url() != route('ViewUpcoming'))
+                <div class="col align-center">Action</div>
             @endif
         </div>
 

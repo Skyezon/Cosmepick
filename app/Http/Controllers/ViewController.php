@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\WorkshopController;
+use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
 {
@@ -15,6 +16,7 @@ class ViewController extends Controller
     }
 
     public function home (){
+        if(Auth::check()) $this->workshopController->validateUpcomingWorkshop();
         return view('home');
     }
 
@@ -25,10 +27,6 @@ class ViewController extends Controller
 
     public function organize(){
         return view('organize');
-    }
-
-    public function profile(){
-        return view('profile');
     }
 
     public function wishlist(){

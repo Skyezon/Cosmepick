@@ -5,7 +5,7 @@
 @section('workshop-title','Class History')
 
 @section('table-content')
-@foreach ($userPurchasedWorkshop as $workshop)
+    @foreach ($userPurchasedWorkshop as $workshop)
         <div class="layout-inline row d-flex justify-content-center align-items-center">
             <div class="col col-pro layout-inline d-flex flex-column justify-content-center align-items-center ">
                 <img style="align-items: center;">

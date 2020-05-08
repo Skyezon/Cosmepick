@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VerifyWorkshopRequest;
-use App\User;
 use App\UserImage;
 use App\Workshop;
 use App\WorkshopImage;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -101,7 +101,6 @@ class WorkshopController extends Controller
         foreach($workshopImages as $image){
             Storage::delete('public/'.$image->url);
         }
-        // dd('public/'.$userImage->url_only_ktp);
         Storage::delete('public/'.$userImage->url_only_ktp);
         Storage::delete('public/'.$userImage->url_with_ktp);
         $workshop->forceDelete();
@@ -144,6 +143,13 @@ class WorkshopController extends Controller
         ->get();
     }
 
+    public function getUpcomingWorkshop(){
+        return Auth::user()->chosenWorkshops()
+        ->where('is_verified', 1)
+        ->wherePivot('workshop_status', 'upcoming')
+        ->get();
+    }
+
     public function softDeleteWorkshop($id){
         Workshop::find($id)->delete();
         return redirect()->back();
@@ -164,4 +170,13 @@ class WorkshopController extends Controller
         
     }
 
+    public function validateUpcomingWorkshop(){
+        Auth::user()->chosenWorkshops()
+        ->whereDate('date', '<', Carbon::now('Asia/Jakarta')->toDateString())
+        ->where(function ($query){
+            $query->where('workshop_status', 'my_workshop')
+            ->orWhere('workshop_status', 'upcoming');
+        })
+        ->update(['workshop_status' => 'hisory']);
+    }
 }
