@@ -63,7 +63,7 @@
             </div>
             <div class="">
                 <a class="img-link" href={{route('ViewWorkshop',['id' => $workshop->id])}}>
-                    <img src={{$workshop->workshopImages()->first()->url}} alt="makeup-{{$loop->index}}"
+                    <img src={{asset('storage/'.$workshop->workshopImages()->first()->url)}} alt="makeup-{{$loop->index}}"
                         class="class-img-{{$loop->index}}">
                 </a>
             </div>
