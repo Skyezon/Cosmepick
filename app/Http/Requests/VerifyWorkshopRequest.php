@@ -28,10 +28,17 @@ class VerifyWorkshopRequest extends FormRequest
             'workshopName' => 'required|min:6',
             'workshopCategory' => 'required',
             'workshopLocation' => 'required',
-            // 'scheduledDate' => 'required|date',
-            function ($attribute, $value, $fail){
-                $currDate = Carbon::now();
-            },
+            'scheduledDate' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail){
+                    $currDate = Carbon::now('Asia/Jakarta');
+                    if($this->isValidScheduledDate($currDate, $value) == false ){
+                        $attribute = 'Scheduled Date';
+                        $fail($attribute.' is not valid');
+                    }
+                }
+            ],
             'workshopPrice' => 'required|numeric',
             'workshopDuration' => 'required|numeric|min:1|max:8',
             'workshopInstructor' => 'required',
@@ -54,5 +61,10 @@ class VerifyWorkshopRequest extends FormRequest
             'idOnlyImg.image' => 'Id card must be an image',
             'idWithUserImg.image' => 'Id card with user must be an image'
         ];
+    }
+
+    private function isValidScheduledDate(Carbon $currDate, $inputedDate){
+        $inputedDate = Carbon::parse($inputedDate);
+        return ($inputedDate->lessThanOrEqualTo($currDate)) ? false : true;
     }
 }
