@@ -8,82 +8,82 @@
         <h1 class="font-weight-bold mb-0">Edit Class</h1>
     </div>
     <form class="form-group d-flex flex-column justify-content-center ">
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="nama" class="mb-2 text-left">Nama</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="nama" class="mb-2 text-center">Nama</label>
             </div>
             <div class="w-50">
-                <input type="text" class="form-control my-input text-left" name="name" value={{$workshop->name}}
+                <input type="text" class="form-control my-input text-center" name="name" value={{$workshop->name}}
                     id="nama" aria-describedby="helpId" placeholder="">
             </div>
         </div>
 
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="category" class="mb-2 text-left">Category</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="category" class="mb-2 text-center">Category</label>
             </div>
             <div class="w-50">
-                <input type="text" class="form-control my-input text-left" name="category" value={{$workshop->category}}
+                <input type="text" class="form-control my-input text-center" name="category" value={{$workshop->category}}
                     id="category" aria-describedby="helpId" placeholder="">
             </div>
         </div>
 
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="location" class="mb-2 text-left">Location</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="location" class="mb-2 text-center">Location</label>
             </div>
             <div class="w-50">
-                <input type="text" class="form-control my-input text-left" name="location" value={{$workshop->location}}
+                <input type="text" class="form-control my-input text-center" name="location" value={{$workshop->location}}
                     id="location" aria-describedby="helpId" placeholder="">
             </div>
         </div>
 
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="date" class="mb-2 text-left">Date</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="date" class="mb-2 text-center">Date</label>
             </div>
             <div class="w-50">
-                <input type="date" class="form-control my-input text-left" name="date" value={{$workshop->date}}
+                <input type="date" class="form-control my-input text-center" name="date" value={{$workshop->date}}
                     id="date" aria-describedby="helpId" placeholder="">
             </div>
         </div>
 
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="price" class="mb-2 text-left">Price</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="price" class="mb-2 text-center">Price</label>
             </div>
             <div class="w-50">
-                <input type="number" class="form-control my-input text-left" min="0" name="price"
+                <input type="number" class="form-control my-input text-center" min="0" name="price"
                     value={{$workshop->price}} id="price" aria-describedby="helpId" placeholder="">
             </div>
         </div>
 
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="duration" class="mb-2 text-left">Duration</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="duration" class="mb-2 text-center">Duration</label>
             </div>
             <div class="w-50">
-                <input type="number" class="form-control my-input text-left" min="1" name="duration"
+                <input type="number" class="form-control my-input text-center" min="1" name="duration"
                     value={{$workshop->duration}} id="duration" aria-describedby="helpId" placeholder="">
             </div>
         </div>
 
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="instructor" class="mb-2 text-left">Instructor</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="instructor" class="mb-2 text-center">Instructor</label>
             </div>
             <div class="w-50">
-                <input type="text" class="form-control my-input text-left" name="instructor"
+                <input type="text" class="form-control my-input text-center" name="instructor"
                     value={{$workshop->instructor}} id="instructor" aria-describedby="helpId" placeholder="">
             </div>
         </div>
 
-        <div class="mb-4">
-            <div class="text-left">
-                <label for="description" class="mb-2 text-left">Description</label>
+        <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
+            <div class="text-center">
+                <label for="description" class="mb-2 text-center">Description</label>
             </div>
             <div class="w-50">
-                <input type="text" class="form-control my-input text-left" name="description"
+                <input type="text" class="form-control my-input text-center" name="description"
                     value={{$workshop->description}} id="description" aria-describedby="helpId" placeholder="">
             </div>
         </div>
