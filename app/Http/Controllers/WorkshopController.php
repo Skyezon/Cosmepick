@@ -144,7 +144,8 @@ class WorkshopController extends Controller
 
     public function edit(){
         $userWorkshop = Auth::user()->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first();
-        return view('editWorkshop',['workshop' => $userWorkshop]);
+        $firstImageworkshopId = $userWorkshop->workshopImages()->first()->id;
+        return view('editWorkshop',['workshop' => $userWorkshop,'workshopImages' => $userWorkshop->workshopImages, 'firstImageId' => $firstImageworkshopId]);
     }
 
 }
