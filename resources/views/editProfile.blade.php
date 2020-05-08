@@ -8,7 +8,7 @@
     @method('PATCH')
     <div class="d-flex justify-content-center">
         <div class="d-flex flex-column justify-content-center align-items-center p-4">
-            <img src={{asset($user->profile_pic_url)}} alt="profile-pic">
+            <img src={{asset('storage/'.$user->profile_pic_url)}} alt="profile-pic">
             <input type="file" class="m-4" name="newProfilePic" value={{$user->profile_pic_url}}>
             @error('newProfilePic')
         <div class="text-danger">{{$message}}</div>
@@ -46,7 +46,6 @@
                         <div class="text-danger">{{$message}}</div>
                         @enderror
                     </div>
-
                     &nbsp; <div>
                         <input value="{{$user->phone}}" type="text" class="form-control w-100" size="50" name="newPhone" id="phone">
                         @error('newPhone')

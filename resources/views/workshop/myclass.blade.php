@@ -10,7 +10,7 @@
             <div class="col col-pro layout-inline d-flex flex-column justify-content-center align-items-center ">
                 <img style="align-items: center;">
                     <a href={{route('showEditClass')}}>
-                        <img src="{{asset($workshop->workshopImages()->first()->url)}}" alt="{{$workshop->name}}">
+                        <img src="{{asset('storage/'.$workshop->workshopImages()->first()->url)}}" alt="{{$workshop->name}}">
                     </a>
                 <p><a href="./join detail/join-detail1.html">{{$workshop->name}}</a></p>
             </div>

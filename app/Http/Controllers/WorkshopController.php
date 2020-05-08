@@ -22,16 +22,27 @@ class WorkshopController extends Controller
     }
 
     private function storeWorkshopImg($workshopId, $request){
-        $idx = 1;
         foreach ($request->file('workshopImgs') as $image) {
             $path = '/storage/'.$image->store('/workshops/workshop'.$workshopId.'/workshopImages');
             $this->insertWorkshopImagePath($path, $workshopId);
-            $idx++;
         }
+    }
+
+    private function deleteWorkshopImg($workshopImgId){
+        $workshopImage = WorkshopImage::find($workshopImgId);
+        Storage::delete('');
     }
 
     private function insertWorkshopImagePath($path, $workshopId){
         WorkshopImage::create([
+            'workshop_id' => $workshopId,
+            'url' => $path
+        ]);
+    }
+
+    private function updateWorkshopImagePath($id,$path, $workshopId){
+        $workshop = Workshop::find($id);
+        $workshop->update([
             'workshop_id' => $workshopId,
             'url' => $path
         ]);
@@ -83,7 +94,7 @@ class WorkshopController extends Controller
         return back()->with('status','Succesfully verify workshop');
     }
 
-    public function noVerifyWorkshop($id){
+    public static function noVerifyWorkshop($id){
         $workshop = Workshop::find($id);
         $userImage = UserImage::where('workshop_id',$id)->first();
         $workshopImages = WorkshopImage::where('workshop_id',$id);
@@ -142,10 +153,14 @@ class WorkshopController extends Controller
         return redirect()->back();
     }
 
-    public function edit(){
+    public function editShow(){
         $userWorkshop = Auth::user()->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first();
         $firstImageworkshopId = $userWorkshop->workshopImages()->first()->id;
         return view('editWorkshop',['workshop' => $userWorkshop,'workshopImages' => $userWorkshop->workshopImages, 'firstImageId' => $firstImageworkshopId]);
+    }
+
+    public function editPost(){
+        
     }
 
 }

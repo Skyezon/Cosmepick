@@ -10,7 +10,7 @@
     <form class="form-group d-flex flex-column justify-content-center ">
         <div class="mb-5 d-flex justify-content-center align-items-center flex-column">
             <div class="text-center">
-                <label for="nama" class="mb-2 text-center">Nama</label>
+                <label for="name" class="mb-2 text-center">Nama</label>
             </div>
             <div class="w-50">
                 <input type="text" class="form-control my-input text-center" name="name" value={{$workshop->name}}

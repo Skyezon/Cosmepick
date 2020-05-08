@@ -9,7 +9,7 @@
         <!-- photo -->
         <div id="profiledes-photos">
             <span class="welcome"><b>Welcome !</b></span>
-            <span> <img id="circle-photos" src={{asset($user->profile_pic_url)}} alt=""></span>
+            <span> <img id="circle-photos" src={{asset('storage/'.$user->profile_pic_url)}} alt=""></span>
         <span class="text-photo">{{$user->name ?? $user->email}}</span>
             <a class="text-photo" href={{route('ViewEditProfile')}}>Edit User</a>
         </div>

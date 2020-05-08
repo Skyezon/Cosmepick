@@ -81,7 +81,6 @@ class UserController extends Controller
             $path = $user->profile_pic_url;
         }else{
             $path = $request->file('newProfilePic')->store('users/'.'user'.$user->id);
-            $path = 'storage/'.$path;
         }
         $user->update([
             'name' => $request->newName,
