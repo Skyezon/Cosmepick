@@ -17,7 +17,6 @@ $factory->define(Workshop::class, function (Faker $faker) {
         'instructor' => $faker->name,
         'description' => $faker->paragraph($nbSentences = 2, $variableNbSentences = true),
         'is_verified' => rand(1,2)
-
     ];
 });
 

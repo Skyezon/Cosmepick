@@ -84,7 +84,7 @@ class UserController extends Controller
             $path = $request->file('newProfilePic')->store('users/'.'user'.$user->id);
         }
         $user->update([
-            'name' => $request->newName,
+            'name' => $request->newName,    
             'email' => $request->newEmail,
             'password' => Hash::make($request->newPassword),
            

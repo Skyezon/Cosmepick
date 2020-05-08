@@ -261,7 +261,8 @@ const revworkshop = (e) =>{
 
 
 displayImage = (input,image,i) => {
-    image.src == window.location.href ? image.style.display= ' none' : console.log('jalan'); 
+
+    image.src == window.location.href ? image.style.display= 'none' : console.log('jalan'); 
     input.addEventListener('change',() =>{
             image.style.display = 'block'
             image.style.maxHeight = '200px'
@@ -285,7 +286,7 @@ function readURL(input,id,image) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            image.setAttribute('src', e.target.result);
+            image.setAttribute('src',  e.target.result);
     
         }
 

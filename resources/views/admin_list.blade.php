@@ -23,7 +23,7 @@
         <div class="row my-3">
             <div class="col-lg-6">
                 <div class="d-flex justify-content-around align-items-center h-100">
-                    <img src={{asset($workshop->workshopImages()->first()->url)}} style="max-height: 200px" alt="classimage">
+                    <img src={{asset('storage/'.$workshop->workshopImages()->first()->url)}} style="max-height: 200px" alt="classimage">
                 <h2>{{$workshop->name}}</h2>
                 </div>
             </div>

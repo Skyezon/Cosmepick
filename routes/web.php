@@ -53,7 +53,7 @@ Route::prefix('workshop')->group(function (){
         Route::get('myclass/edit','WorkshopController@editShow')->name('showEditClass');
 
         Route::delete('myclass/{id}', 'WorkshopController@softDeleteWorkshop')->name('DeleteUserCreatedWorkshop');
-        Route::patch('myclass/edit/{id}','WorkshopContrller@editPost')->name('editClass');
+        Route::patch('myclass/edit','WorkshopContrller@editPost')->name('editClass');
     }));
 
 });

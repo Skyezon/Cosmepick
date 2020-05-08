@@ -9,6 +9,6 @@ use Faker\Generator as Faker;
 
 $factory->define(WorkshopImage::class, function (Faker $faker) {
     return [
- 
+        
     ];
 });
