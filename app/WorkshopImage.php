@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WorkshopImage extends Model
 {
     protected $fillable = [
-        'workshop_id', 'url'
+        'workshop_id', 'url', 'index'
     ];
 
     public function workshop(){

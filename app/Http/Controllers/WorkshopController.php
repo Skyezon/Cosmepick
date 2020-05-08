@@ -23,16 +23,17 @@ class WorkshopController extends Controller
     }
 
     private function storeWorkshopImg($workshopId, $request){
-        foreach ($request->file('workshopImgs') as $image) {
+        foreach ($request->file('workshopImgs') as $key => $image) {
+
             $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
-            $this->insertWorkshopImagePath($path, $workshopId);
+            $this->insertWorkshopImagePath($path, $workshopId, $key);
         }
     }
 
     private function updateWorkshopImg($workshopId, $request){
-        foreach ($request->file('workshopImgs') as $image) {
+        foreach ($request->file('workshopImgs') as $key => $image) {
             $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
-            $this->insertWorkshopImagePath($path, $workshopId);
+            $this->insertWorkshopImagePath($path, $workshopId, $key);
         }
         $workshopImagesRequest = $request->file('workshopImgs');
         for ($i = 0 ;$i < 5; $i++){
@@ -47,10 +48,12 @@ class WorkshopController extends Controller
         Storage::delete('public/'.$workshopImage->url);
     }
 
-    private function insertWorkshopImagePath($path, $workshopId){
+    private function insertWorkshopImagePath($path, $workshopId, $index){
+        // dd($index);
         WorkshopImage::create([
             'workshop_id' => $workshopId,
-            'url' => $path
+            'url' => $path,
+            'index' => $index
         ]);
     }
 
