@@ -169,7 +169,7 @@ class WorkshopController extends Controller
 
     private function getJoinWorkshopList($user){
         $notDisplayedWorkshopId = $user->chosenWorkshops()
-        ->where(function($query){
+            ->where(function($query){
             $query->where('workshop_status', 'my_workshop')
             ->orWhere('workshop_status', 'upcoming');
         })
@@ -245,8 +245,11 @@ class WorkshopController extends Controller
         ->get();
     }
 
-    public function search(Request $query){
-        $workshops = $workshop::where('name','LIKE','%'.$query.'%');
-        return view('join',compact('workshops'));
+    public function adminDetail($id){
+        $workshop = Workshop::find($id);
+        $userPhone = $workshop->chosenWorkshops()->wherePivot('workshop_status','my_workshops')->first();
+        $userPhone == null ? $userPhone = '0821346578952' : $userPhone = $userPhone->phone;
+        
+        return view('admin_details',compact('workshop','userPhone'));
     }
 }

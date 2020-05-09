@@ -99,17 +99,17 @@
 
         <div class="right-footer-container">
             <div>
-                <a class="footer-link-right" href="http://www.facebook.com/">
+                <a class="footer-link-right" href="https://www.facebook.com/cosme.pick.35">
                     <img src={{asset('assets/fb.png')}} alt="">
                 </a>
             </div>
             <div>
-                <a class="footer-link-right" href="http://www.instagram.com/">
+                <a class="footer-link-right" href="https://www.instagram.com/cosmepick.id/">
                     <img src={{asset('assets/ig.png')}} alt="">
                 </a>
             </div>
             <div>
-                <a class="footer-link-right" href="http://www.youtube.com/">
+                <a class="footer-link-right" href="https://www.youtube.com/channel/UCadBzjIAB9B8R45YzyC2m6Q/">
                     <img src={{asset('assets/yt.png')}} alt="">
                 </a>
             </div>
