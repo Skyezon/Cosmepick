@@ -35,4 +35,7 @@
             </div>
         </div>
     @endforeach
+    <div class="d-flex justify-content-center my-4">
+        {{$userWhistlistWorkshops->links()}}
+    </div>
 @endsection
