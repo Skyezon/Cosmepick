@@ -201,8 +201,6 @@ class WorkshopController extends Controller
         return view('editWorkshop',['workshop' => $userWorkshop,'workshopImages' => $userWorkshop->workshopImages, 'firstImageId' => $firstImageworkshopId]);
     }
 
-
-
     public function validateUpcomingWorkshop(){
         Auth::user()->chosenWorkshops()
         ->whereDate('date', '<', Carbon::now('Asia/Jakarta')->toDateString())
@@ -211,5 +209,16 @@ class WorkshopController extends Controller
             ->orWhere('workshop_status', 'upcoming');
         })
         ->update(['workshop_status' => 'hisory']);
+    }
+
+    public function hasUnverifiedWorkshopReq($user){
+        return ($this->findUnverifiedWorkshopReq($user)->isEmpty()) ? false : true;
+    }
+
+    private function findUnverifiedWorkshopReq($user){
+        return $user->chosenWorkshops()
+        ->wherePivot('workshop_status', 'my_workshop')
+        ->where('is_verified', 2)
+        ->get();
     }
 }

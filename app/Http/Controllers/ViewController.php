@@ -26,6 +26,7 @@ class ViewController extends Controller
 
 
     public function organize(){
+        if($this->workshopController->hasUnverifiedWorkshopReq(Auth::user())) return redirect(route('ViewWait'));
         return view('organize');
     }
 
@@ -63,5 +64,7 @@ class ViewController extends Controller
     public function adminList(){
         return view('admin_list');
     }
+
+    
 
 }
