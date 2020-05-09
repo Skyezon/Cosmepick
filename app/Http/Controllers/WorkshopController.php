@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\VerfiyWorkshopEditRequest;
+use App\ChosenWorkshop;
 use App\Http\Requests\VerifyWorkshopEditRequest;
 use App\Http\Requests\VerifyWorkshopRequest;
 use App\UserImage;
@@ -65,7 +65,6 @@ class WorkshopController extends Controller
                 
         }
     }
-
 
     private function insertWorkshopImagePath($path, $workshopId, $index){
         WorkshopImage::create([
@@ -166,15 +165,23 @@ class WorkshopController extends Controller
     }
 
     private function getJoinWorkshopList($user){
-        $notDisplayedWorkshopId = $user->chosenWorkshops()
-            ->where(function($query){
+        $notDisplayedWorkshopId = Auth::check() ? $this->getUserUndisplayedWorkshopId($user) : $this->getGuestUndisplayedWorkshopId();
+        return Workshop::whereNotIn('id', $notDisplayedWorkshopId->toArray())->where('is_verified', 1)->paginate(5);
+    } 
+
+    private function getUserUndisplayedWorkshopId($user){
+        return $user->chosenWorkshops()
+        ->where(function($query){
             $query->where('workshop_status', 'my_workshop')
             ->orWhere('workshop_status', 'upcoming');
         })
-        ->pluck('workshop_id');
-        
-        return Workshop::whereNotIn('id', $notDisplayedWorkshopId->toArray())->where('is_verified', 1)->paginate(5);
-    }    
+        ->distinct()->pluck('workshop_id');
+    }
+    
+    private function getGuestUndisplayedWorkshopId(){
+        return ChosenWorkshop::where('workshop_status', 'history')
+        ->distinct()->pluck('workshop_id');
+    }
 
     public function show($id){
         $workshop = Workshop::find($id);
