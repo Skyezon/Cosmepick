@@ -9,7 +9,6 @@ use App\Workshop;
 use App\WorkshopImage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class WorkshopController extends Controller
@@ -49,7 +48,7 @@ class WorkshopController extends Controller
     }
 
     private function insertWorkshopImagePath($path, $workshopId, $index){
-        // dd($index);
+
         WorkshopImage::create([
             'workshop_id' => $workshopId,
             'url' => $path,
@@ -126,7 +125,7 @@ class WorkshopController extends Controller
         $workshop = Workshop::find($id);
         $workshop->is_verified = 1;
         $workshop->save();
-        return back()->with('status','Succesfully verify workshop');
+        return back()->with('status','Successfully verify workshop');
     }
 
     public function noVerifyWorkshop($id){
@@ -139,12 +138,27 @@ class WorkshopController extends Controller
         Storage::delete('public/'.$userImage->url_only_ktp);
         Storage::delete('public/'.$userImage->url_with_ktp);
         $workshop->forceDelete();
-        return back()->with('delete','Succesfully Refuse workshop');
+        return back()->with('delete','Successfully Refuse workshop');
     }
 
     public function index(){
+        $workshops = $this->getJoinWorkshopList(Auth::User());
         $workshops = Workshop::paginate(5);
         return view('join',compact('workshops'));
+    }
+
+    private function getJoinWorkshopList($user){
+        $notDisplayedWorkshopIds = [$this->getUserCreatedWorkshop()->first()->id];
+        $notDisplayedWorkshopIds->concat([
+            $user->chosenWorkshops()
+            ->where(function($query){
+                $query->where('workshop_status', 'my_workshop')
+                ->orWhere('workshop_status', 'upcoming');
+            })
+            ->pluck('id')
+        ]);
+        
+        return Workshop::whereNotIn('id', $notDisplayedWorkshopIds->toArray())->paginate(5);
     }
 
     public function show($id){
@@ -161,7 +175,7 @@ class WorkshopController extends Controller
         ->get();
     }
 
-    public function getUserWhistlistWorkshop(){
+    public function getUserWishlistWorkshop(){
         return Auth::user()->chosenWorkshops()
         ->where('is_verified', 1)
         ->wherePivot('workshop_status', 'wishlist')
@@ -186,11 +200,13 @@ class WorkshopController extends Controller
     }
 
     public function softDeleteWorkshop($id){
-        Workshop::find($id)->delete();
+        $workshop = Workshop::find($id);
+        $workshop->chosenWorkshops()->detach(Auth::user()->id);
+        $workshop->delete();
         return redirect()->back();
     }
 
-    public function removeWhistlistWorkshop(Workshop $workshop){
+    public function removeWishlistWorkshop(Workshop $workshop){
         Auth::user()->chosenWokshops()->detach($workshop->id);
         return redirect()->back();
     }
@@ -199,16 +215,6 @@ class WorkshopController extends Controller
         $userWorkshop = Auth::user()->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first();
         $firstImageworkshopId = $userWorkshop->workshopImages()->first()->id;
         return view('editWorkshop',['workshop' => $userWorkshop,'workshopImages' => $userWorkshop->workshopImages, 'firstImageId' => $firstImageworkshopId]);
-    }
-
-    public function validateUpcomingWorkshop(){
-        Auth::user()->chosenWorkshops()
-        ->whereDate('date', '<', Carbon::now('Asia/Jakarta')->toDateString())
-        ->where(function ($query){
-            $query->where('workshop_status', 'my_workshop')
-            ->orWhere('workshop_status', 'upcoming');
-        })
-        ->update(['workshop_status' => 'hisory']);
     }
 
     public function hasUnverifiedWorkshopReq($user){

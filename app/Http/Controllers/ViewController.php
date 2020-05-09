@@ -16,14 +16,8 @@ class ViewController extends Controller
     }
 
     public function home (){
-        if(Auth::check()) $this->workshopController->validateUpcomingWorkshop();
         return view('home');
     }
-
-    public function join (){
-        return view('join');
-    }
-
 
     public function organize(){
         if($this->workshopController->hasUnverifiedWorkshopReq(Auth::user())) return redirect(route('ViewWait'));
@@ -32,7 +26,7 @@ class ViewController extends Controller
 
     public function wishlist(){
         return view('workshop.wishlist', ['userWhistlistWorkshops' => 
-        $this->workshopController->getUserWhistlistWorkshop()]);
+        $this->workshopController->getUserWishlistWorkshop()]);
     }
 
     public function upcoming(){
