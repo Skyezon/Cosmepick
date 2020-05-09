@@ -48,10 +48,14 @@
                     
                 </div>
                 <div class="search">
-                    <label for="">
-                        <img class="search-img" src={{asset('assets/search.png')}} alt="">
-                    </label>
-                    <input size="4" type="text" name="search" id="" placeholder="Search class name">
+                    <form action="{{route('SearchJoin')}}" method="POST">
+                        @csrf
+                        <label for="">
+                            <button type="submit"><img class="search-img" src={{asset('assets/search.png')}} alt=""></button>
+                        </label>
+                
+                        <input size="4" type="text" name="search" id="" placeholder="Search class name">
+                    </form>
                 </div>
             </div>
         </div>

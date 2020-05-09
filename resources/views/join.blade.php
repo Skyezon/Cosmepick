@@ -1,31 +1,32 @@
-
 @extends('layouts.head')
 
 @section('title','Join')
 
 @section('content')\
 @if(session('message'))
-    <div class="alert alert-success">
-        {{session('message')}}
-    </div>
+<div class="alert alert-success">
+    {{session('message')}}
+</div>
 @endif
 <div id="overlay">
     <div>
         <div class="price">
-            <h3>Price</h3>
-            <label class="radio-container">less or equal to Rp100.000,00
-                <input type="radio" name="radio">
-                <a class="checkmark"></a>
-            </label>
-            <label class="radio-container">less or equal to Rp200.000,00
-                <input type="radio" name="radio">
-                <a class="checkmark"></a>
-            </label>
-            <label class="radio-container">more than Rp200.000,00
-                <input type="radio" name="radio">
-                <a class="checkmark"></a>
-            </label>
-            <button id="ok-filter" onclick="off()">OK</button>
+            <form action="">
+                <h3>Price</h3>
+                <label class="radio-container">less or equal to Rp100.000,00
+                    <input type="radio" name="radio">
+                    <a class="checkmark"></a>
+                </label>
+                <label class="radio-container">less or equal to Rp200.000,00
+                    <input type="radio" name="radio">
+                    <a class="checkmark"></a>
+                </label>
+                <label class="radio-container">more than Rp200.000,00
+                    <input type="radio" name="radio">
+                    <a class="checkmark"></a>
+                </label>
+                <button id="ok-filter" onclick="off()">OK</button>
+            </form>
         </div>
     </div>
 </div>
@@ -58,49 +59,58 @@
                         </div>
                     </div>
                 </p>
-                <div  class="d-flex align-items-center">
+                <div class="d-flex align-items-center">
                     <div class="mr-5">
-                        <a name="" id="" class="btn btn-primary text-light" href={{route('ViewWorkshop',['id' => $workshop->id])}} role="button">Details</a>
+                        <a name="" id="" class="btn btn-primary text-light"
+                            href={{route('ViewWorkshop',['id' => $workshop->id])}} role="button">Details</a>
                     </div>
-                   
-                             @if(Auth::check())
-                                 @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','wishlist')->where('workshop_id',$workshop->id)->first() ?? false)
-                             <a class="img-link" href="{{route('unRegisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}" onclick="document.getElementById('myform').submit()">
-                                <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}" style="filter:none"class="wishlist-btn">
-                             </a>
-                                @else
-                             <a class="img-link" href="{{route('regisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}" onclick="document.getElementById('myform').submit()">
-                                <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"class="wishlist-btn">
-                             </a>
-                             @endif    
-                             @else
-                             <a class="img-link" href="{{route('login')}}">
-                                <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"class="wishlist-btn">
-                             </a>
-                             @endif
-                     
+
+                    @if(Auth::check())
+                    @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','wishlist')->where('workshop_id',$workshop->id)->first()
+                    ?? false)
+                    <a class="img-link"
+                        href="{{route('unRegisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}"
+                        onclick="document.getElementById('myform').submit()">
+                        <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}" style="filter:none"
+                            class="wishlist-btn">
+                    </a>
+                    @else
+                    <a class="img-link"
+                        href="{{route('regisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}"
+                        onclick="document.getElementById('myform').submit()">
+                        <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"
+                            class="wishlist-btn">
+                    </a>
+                    @endif
+                    @else
+                    <a class="img-link" href="{{route('login')}}">
+                        <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"
+                            class="wishlist-btn">
+                    </a>
+                    @endif
+
                 </div>
             </div>
             <div class="">
 
 
-                
+
                 <a class="img-link" href={{route('ViewWorkshop',['id' => $workshop->id])}}>
-                    <img src={{asset('storage/'.$workshop->workshopImages()->first()->url)}} alt="makeup-{{$loop->index}}"
-                        class="class-img-{{$loop->index}}">
+                    <img src={{asset('storage/'.$workshop->workshopImages()->first()->url)}}
+                        alt="makeup-{{$loop->index}}" class="class-img-{{$loop->index}}">
                 </a>
             </div>
         </div>
-        
+
         @endforeach
 
     </div>
 
 
-<div class="mt-5">
-    {{$workshops->links()}}
+    <div class="mt-5">
+        {{$workshops->links()}}
 
-</div>
+    </div>
 
     <div class="join-page">
         <a href="" class="join-page">1</a>

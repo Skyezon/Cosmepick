@@ -167,21 +167,20 @@ class WorkshopController extends Controller
     }
 
     private function getJoinWorkshopList($user){
-        $notDisplayedWorkshopId = Auth::check() ? $this->getUserUndisplayedWorkshopId($user) : $this->getGuestUndisplayedWorkshopId();
+        $notDisplayedWorkshopId = Auth::check() ? $this->getUserUndisplayedWorkshopId($user->chosenWorkshops()) : $this->getGuestUndisplayedWorkshopId(ChosenWorkshop::all());
         return Workshop::whereNotIn('id', $notDisplayedWorkshopId->toArray())->where('is_verified', 1)->paginate(5);
     } 
 
-    private function getUserUndisplayedWorkshopId($user){
-        return $user->chosenWorkshops()
-        ->where(function($query){
+    private function getUserUndisplayedWorkshopId($workshop){
+        return $workshop->where(function($query){
             $query->where('workshop_status', 'my_workshop')
             ->orWhere('workshop_status', 'upcoming');
         })
         ->distinct()->pluck('workshop_id');
     }
     
-    private function getGuestUndisplayedWorkshopId(){
-        return ChosenWorkshop::where('workshop_status', 'history')
+    private function getGuestUndisplayedWorkshopId($workshop){
+        return $workshop->where('workshop_status', 'history')
         ->distinct()->pluck('workshop_id');
     }
 
