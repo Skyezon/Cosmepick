@@ -160,12 +160,11 @@ class WorkshopController extends Controller
 
     public function index(){
         $workshops = $this->getJoinWorkshopList(Auth::User());
-        $workshops = Workshop::paginate(5);
         return view('join',compact('workshops'));
     }
 
     private function getJoinWorkshopList($user){
-        $notDisplayedWorkshopId = Auth::check() ? $this->getUserUndisplayedWorkshopId($user->chosenWorkshops()) : $this->getGuestUndisplayedWorkshopId(ChosenWorkshop::all());
+        $notDisplayedWorkshopId = Auth::check() ? $this->getUserUndisplayedWorkshopId($user->chosenWorkshops()) : $this->getGuestUndisplayedWorkshopId();
         return Workshop::whereNotIn('id', $notDisplayedWorkshopId->toArray())->where('is_verified', 1)->paginate(5);
     } 
 
@@ -177,8 +176,8 @@ class WorkshopController extends Controller
         ->distinct()->pluck('workshop_id');
     }
     
-    private function getGuestUndisplayedWorkshopId($workshop){
-        return $workshop->where('workshop_status', 'history')
+    private function getGuestUndisplayedWorkshopId(){
+        return ChosenWorkshop::where('workshop_status', 'history')
         ->distinct()->pluck('workshop_id');
     }
 

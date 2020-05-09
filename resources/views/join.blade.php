@@ -11,21 +11,24 @@
 <div id="overlay">
     <div>
         <div class="price">
-            <form action="">
+            <form action="{{route('FilterJoin')}}" method="POST">
+                @csrf
+
                 <h3>Price</h3>
                 <label class="radio-container">less or equal to Rp100.000,00
-                    <input type="radio" name="radio">
+                    <input type="radio" name="filterPrice", value="1" checked>
                     <a class="checkmark"></a>
                 </label>
                 <label class="radio-container">less or equal to Rp200.000,00
-                    <input type="radio" name="radio">
+                    <input type="radio" name="filterPrice", value="2">
                     <a class="checkmark"></a>
                 </label>
                 <label class="radio-container">more than Rp200.000,00
-                    <input type="radio" name="radio">
+                    <input type="radio" name="filterPrice", value="3">
                     <a class="checkmark"></a>
                 </label>
-                <button id="ok-filter" onclick="off()">OK</button>
+                <button type="submit" id="ok-filter">OK</button>
+                
             </form>
         </div>
     </div>

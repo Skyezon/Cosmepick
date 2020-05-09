@@ -53,7 +53,7 @@
                         <label for="">
                             <button type="submit"><img class="search-img" src={{asset('assets/search.png')}} alt=""></button>
                         </label>
-                
+
                         <input size="4" type="text" name="search" id="" placeholder="Search class name">
                     </form>
                 </div>
