@@ -114,8 +114,6 @@ class WorkshopController extends Controller
         ]);
     }
 
-   
-
     public function editWorkshop($request, $id){
         $workshop = Workshop::find($id);
        return $workshop->update([
@@ -202,7 +200,7 @@ class WorkshopController extends Controller
         return Auth::user()->chosenWorkshops()
         ->where('is_verified', 1)
         ->wherePivot('workshop_status', 'wishlist')
-        ->get();
+        ->paginate(5);
     }
 
     public function getTransactionHistory(){
@@ -212,14 +210,14 @@ class WorkshopController extends Controller
             $query->where('workshop_status', 'history')
             ->orWhere('workshop_status', 'upcoming');
         })
-        ->get();
+        ->paginate(5);
     }
 
     public function getUpcomingWorkshop(){
         return Auth::user()->chosenWorkshops()
         ->where('is_verified', 1)
         ->wherePivot('workshop_status', 'upcoming')
-        ->get();
+        ->paginate(5);
     }
 
     public function softDeleteWorkshop($id){
@@ -255,7 +253,15 @@ class WorkshopController extends Controller
         $workshop = Workshop::find($id);
         $userPhone = $workshop->chosenWorkshops()->wherePivot('workshop_status','my_workshops')->first();
         $userPhone == null ? $userPhone = '0821346578952' : $userPhone = $userPhone->phone;
-        
         return view('admin_details',compact('workshop','userPhone'));
+    }
+
+    public function hasActiveWorkshop(){
+        $user = Auth::user();
+        if($user->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first() != null){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

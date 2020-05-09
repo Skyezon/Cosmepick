@@ -24,7 +24,8 @@ class ViewController extends Controller
 
     public function organize(){
         if($this->workshopController->hasUnverifiedWorkshopReq(Auth::user())) return redirect(route('ViewWait'));
-        return view('organize');
+        if($this->workshopController->hasActiveWorkshop()) return redirect('wait')->with('message','You can only have one Class at a time.....');
+            return view('organize');
     }
 
     public function wishlist(){
@@ -33,7 +34,8 @@ class ViewController extends Controller
     }
 
     public function upcoming(){
-        return view('workshop.upcoming');
+        return view('workshop.upcoming',['userUpcomingdWorkshop' => 
+        $this->workshopController->getUpcomingWorkshop()]);
     }
 
     public function myclass(){
