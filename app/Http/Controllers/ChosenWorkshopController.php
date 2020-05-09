@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ChosenWorkshopController extends Controller
 {
+    //! ini sebenarnnya yang terbalek pas mau proses ke viewnya bukan funciton dibawah ini
     public function WorkshopAttachUser($workshopId, $relationType){
         $user = Auth::user();
         $user->chosenWorkshops()->attach($relationType,['workshop_status' => $workshopId]);

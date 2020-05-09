@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'ViewController@home')->name('ViewHome');
 Route::get('join','WorkshopController@index')->name('ViewJoin');
-
+Route::post('join/search?');
 Route::middleware(['auth'])->group(function() {
     Route::get('organize','ViewController@organize')->name('ViewOrganize');
     Route::post('organize', 'WorkshopController@sendVerifyWorkshopReq')->name('reqWorkshopVerification');

@@ -246,4 +246,9 @@ class WorkshopController extends Controller
         ->where('is_verified', 2)
         ->get();
     }
+
+    public function search(Request $query){
+        $workshops = $workshop::where('name','LIKE','%'.$query.'%');
+        return view('join',compact('workshops'));
+    }
 }

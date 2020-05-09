@@ -31,7 +31,7 @@
                 <p>Rp {{number_format($workshop->price,2,',','.')}}</p>
             </div>
             <div class="col col-total col-numeric d-flex justify-content-around">
-                <a href="{{route('removeFromWhistlist', $workshop->id)}}" class="btn btn-danger">Delete</a>
+                <a href="{{route('unRegisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     @endforeach
