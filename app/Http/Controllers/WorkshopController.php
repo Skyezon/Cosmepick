@@ -176,9 +176,7 @@ class WorkshopController extends Controller
         ->pluck('workshop_id');
         
         return Workshop::whereNotIn('id', $notDisplayedWorkshopId->toArray())->paginate(5);
-    }
-
-    
+    }    
 
     public function show($id){
         $workshop = Workshop::find($id);
