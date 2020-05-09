@@ -221,15 +221,4 @@ class WorkshopController extends Controller
         return view('editWorkshop',['workshop' => $userWorkshop,'workshopImages' => $userWorkshop->workshopImages, 'firstImageId' => $firstImageworkshopId]);
     }
 
-
-
-    public function validateUpcomingWorkshop(){
-        Auth::user()->chosenWorkshops()
-        ->whereDate('date', '<', Carbon::now('Asia/Jakarta')->toDateString())
-        ->where(function ($query){
-            $query->where('workshop_status', 'my_workshop')
-            ->orWhere('workshop_status', 'upcoming');
-        })
-        ->update(['workshop_status' => 'hisory']);
-    }
 }

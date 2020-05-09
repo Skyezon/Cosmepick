@@ -2,7 +2,12 @@
 
 @section('title','Join')
 
-@section('content')
+@section('content')\
+@if(session('message'))
+    <div class="alert alert-success">
+        {{session('message')}}
+    </div>
+@endif
 <div id="overlay">
     <div>
         <div class="price">
@@ -56,12 +61,29 @@
                     <div class="mr-5">
                         <a name="" id="" class="btn btn-primary text-light" href={{route('ViewWorkshop',['id' => $workshop->id])}} role="button">Details</a>
                     </div>
-                    <a href="#" class="" >
-                        <img class="wishlist-btn" src={{asset('assets/wishlist_btn.png')}} alt="wishlist-btn">
-                    </a>
+                   
+                             @if(Auth::check())
+                                 @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','wishlist')->where('workshop_id',$workshop->id)->first() ?? false)
+                             <a class="img-link" href="{{route('unRegisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}" onclick="document.getElementById('myform').submit()">
+                                <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}" style="filter:none"class="wishlist-btn">
+                             </a>
+                                @else
+                             <a class="img-link" href="{{route('regisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}" onclick="document.getElementById('myform').submit()">
+                                <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"class="wishlist-btn">
+                             </a>
+                             @endif    
+                             @else
+                             <a class="img-link" href="{{route('login')}}">
+                                <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"class="wishlist-btn">
+                             </a>
+                             @endif
+                     
                 </div>
             </div>
             <div class="">
+
+
+                
                 <a class="img-link" href={{route('ViewWorkshop',['id' => $workshop->id])}}>
                     <img src={{asset('storage/'.$workshop->workshopImages()->first()->url)}} alt="makeup-{{$loop->index}}"
                         class="class-img-{{$loop->index}}">

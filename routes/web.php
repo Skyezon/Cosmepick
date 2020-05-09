@@ -42,6 +42,9 @@ Route::prefix('workshop')->group(function (){
     Route::get('details/{id}','WorkshopController@show')->name('ViewWorkshop');
 
     Route::middleware(['auth'])->group((function (){
+        Route::get('register/{relationType}/{workshopId}/attach','ChosenWorkshopController@WorkshopAttachUser')->name('regisWorkshop');
+        Route::get('register/{relationType}/{workshopId}/detach','ChosenWorkshopController@WorkshopDetachUser')->name('unRegisWorkshop');
+
         Route::get('wishlist','ViewController@wishlist')->name('ViewWishlist');
         Route::get('wishlist/{id}', 'WorkshopController@removeWhistlistWorkshop')->name('removeFromWhistlist');
 

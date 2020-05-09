@@ -3,9 +3,14 @@
 @section('title', 'Product')
 
 @section('content')
-
+@if(session('message'))
+        <div class="alert alert-success">
+                {{session('message')}}
+        </div>
+    @endif
 <div class="detail-join-container">
   
+
     <div class="slide-container">
         @foreach ($workshop->workshopImages as $image)
         <img class="join-slides" src={{asset('storage/'.$image->url)}} alt="">
@@ -53,15 +58,40 @@
         <div class="join-detail-btn mt-3">
             <!-- wishlist -->
             <div >
-                <a href="#" class="d-flex">
-                    <img class="wishlist-btn" src={{asset('assets/wishlist_btn.png')}} alt="wishlist-btn">
-                </a>
+                @if(Auth::check())
+                                 @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','wishlist')->where('workshop_id',$workshop->id)->first() ?? false)
+                             <a class="img-link" href="{{route('unRegisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}" onclick="document.getElementById('myform').submit()">
+                                <img src={{asset('assets/wishlist_btn.png')}} alt="wishlist-btn" style="filter:none"class="wishlist-btn">
+                             </a>
+                                @else
+                             <a class="img-link" href="{{route('regisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}" onclick="document.getElementById('myform').submit()">
+                                <img src={{asset('assets/wishlist_btn.png')}} alt="wishlist-btn"class="wishlist-btn">
+                             </a>
+                             @endif    
+                             @else
+                             <a class="img-link" href="{{route('login')}}" >
+                                <img src={{asset('assets/wishlist_btn.png')}} alt="wishlist-btn"class="wishlist-btn">
+                             </a>
+                             @endif
             </div>
             <!-- join -->
             <div class="join-button-container">
-                <a class="join-click" href="">
+                @if(Auth::check())
+                @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','upcoming')->where('workshop_id',$workshop->id)->first() ?? false)
+                <a class="join-click" href="{{route('unRegisWorkshop',['workshopId' => $workshop->id, 'relationType' => 'upcoming'])}}">
+                    Leave the Class
+                </a>
+                   @else
+                   <a class="join-click" href="{{route('regisWorkshop',['workshopId' => $workshop->id, 'relationType' => 'upcoming'])}}">
                     Join the Class
                 </a>
+                @endif
+        
+                @else
+                <a class="join-click" href="{{route('login')}}">
+                    Join the Class
+                </a>
+                @endif
             </div>
         </div>
     </div>
