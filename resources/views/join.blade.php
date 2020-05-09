@@ -1,3 +1,4 @@
+
 @extends('layouts.head')
 
 @section('title','Join')
