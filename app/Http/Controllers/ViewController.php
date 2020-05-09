@@ -16,6 +16,9 @@ class ViewController extends Controller
     }
 
     public function home (){
+        if(Auth::check()){
+            if(Auth::user()->role == 1)  return redirect(route('viewAdminList'));
+        }
         return view('home');
     }
 

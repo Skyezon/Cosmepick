@@ -12,7 +12,7 @@
                     <a href="#">
                         <img src="{{asset('storage/'.$workshop->workshopImages()->first()->url)}}" alt="{{$workshop->name}}">
                     </a>
-                <p><a href="./join detail/join-detail1.html">{{$workshop->name}}</a></p>
+                <p><a href={{route('ViewWorkshop',['id' => $workshop->id])}}>{{$workshop->name}}</a></p>
             </div>
 
             <div class="col col-price col-numeric align-center">

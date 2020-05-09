@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VerfiyWorkshopEditRequest;
+use App\Http\Requests\VerifyWorkshopEditRequest;
 use App\Http\Requests\VerifyWorkshopRequest;
 use App\UserImage;
 use App\Workshop;
 use App\WorkshopImage;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,34 +23,51 @@ class WorkshopController extends Controller
         return redirect(route('ViewWait'));
     }
 
+    public function editPost(VerifyWorkshopEditRequest $request){
+        $workshop = Auth::user()->chosenWorkshops()->wherePivot('workshop_status','my_workshop')->first();
+        $this->editWorkshop($request,$workshop->id);
+        $this->updateWorkshopImg($workshop->id,$request);
+
+        return redirect(route('showEditClass'))->with('message','successfully updated workshop');
+    }
+
     private function storeWorkshopImg($workshopId, $request){
         foreach ($request->file('workshopImgs') as $key => $image) {
-
             $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
             $this->insertWorkshopImagePath($path, $workshopId, $key);
         }
     }
 
     private function updateWorkshopImg($workshopId, $request){
-        foreach ($request->file('workshopImgs') as $key => $image) {
-            $path = $image->store('/workshops/workshop'.$workshopId.'/workshopImages');
-            $this->insertWorkshopImagePath($path, $workshopId, $key);
-        }
-        $workshopImagesRequest = $request->file('workshopImgs');
+        
+        $workshopImagesRequest  = $request->file('workshopImgs');
+        $workshop = Workshop::find($workshopId);
+     
+        
+        if(count($workshopImagesRequest) == 0){
+            return;
+        } 
         for ($i = 0 ;$i < 5; $i++){
-            if($workshopImagesRequest[$i] == null){
+            $workshopImage = $workshop->workshopImages()->where('index',$i)->first();
+            !empty($workshopImagesRequest[$i]) ?? Storage::delete('public/'.$workshopImage->url);
+            if(!empty($workshopImagesRequest[$i])){                
 
+                $path = $workshopImagesRequest[$i]->store('/workshops/workshop'.$workshopId.'/workshopImages');
+                
+                if($workshop->workshopImages()->where('index',$i)->first() == null ){
+                    $this->insertWorkshopImagePath($path, $workshopId, $i);
+                }else{
+                    $this->updateWorkshopImagePath($path,$workshop->id,$i);
+                }
+            }else{
+                continue;
             }
+                
         }
     }
 
-    private function deleteWorkshopImg($workshopImgId){
-        $workshopImage = WorkshopImage::find($workshopImgId);
-        Storage::delete('public/'.$workshopImage->url);
-    }
 
     private function insertWorkshopImagePath($path, $workshopId, $index){
-
         WorkshopImage::create([
             'workshop_id' => $workshopId,
             'url' => $path,
@@ -56,11 +75,13 @@ class WorkshopController extends Controller
         ]);
     }
 
-    private function updateWorkshopImagePath($id,$path, $workshopId){
-        $workshop = Workshop::find($id);
-       return $workshop->update([
+    private function updateWorkshopImagePath($path, $workshopId, $index){
+        $workshop = Workshop::find($workshopId);
+        $workshopImage = $workshop->workshopImages()->where('index',$index)->first();
+       return $workshopImage->update([
             'workshop_id' => $workshopId,
-            'url' => $path
+            'url' => $path,
+            'index' => $index
         ]);
     }
 
@@ -94,13 +115,11 @@ class WorkshopController extends Controller
         ]);
     }
 
-    public function editPost(VerfiyWorkshopEditRequest $request){
-        
-    }
+   
 
     public function editWorkshop($request, $id){
         $workshop = Workshop::find($id);
-        return $workshop->update([
+       return $workshop->update([
             'name' => $request->name,
             'category' => $request->category,
             'location' => $request->location,
@@ -110,6 +129,7 @@ class WorkshopController extends Controller
             'instructor' => $request->instructor,
             'description' => $request->description
         ]);
+        
     }
 
     public function showNotVerified(){
