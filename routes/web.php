@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function (){
         Route::get('class-list','WorkshopController@showNotVerified')->name('viewAdminList');
         Route::post('class-list/{id}','WorkshopController@verifyWorkshop')->name('verifyWorkshop');
         Route::delete('class-list/{id}','WorkshopController@noVerifyWorkshop')->name('noVerifyWorkshop');
-        Route::get('class-list/{id}');
+        Route::get('class-list/{id}','WorkshopController@adminDetail')->name('ViewAdminDetail');
     });
     
 });

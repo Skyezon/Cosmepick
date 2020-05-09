@@ -33,7 +33,7 @@
                             @csrf
                             <button name="" id="" class="btn btn-success text-light" href="#" type="submit" role="button">Verify!</button>
                         </form>
-                        <button name="" id="" class="btn btn-primary text-light" href="#" role="button">View Detail</button>
+                    <a name="" id="" class="btn btn-primary text-light" href="{{route('ViewAdminDetail',['id' => $workshop->id])}}" role="button">View Detail</a>
                         <form action={{route('noVerifyWorkshop',['id' => $workshop->id])}} method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('DELETE')

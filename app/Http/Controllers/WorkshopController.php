@@ -252,8 +252,11 @@ class WorkshopController extends Controller
         ->get();
     }
 
-    public function search(Request $query){
-        $workshops = $workshop::where('name','LIKE','%'.$query.'%');
-        return view('join',compact('workshops'));
+    public function adminDetail($id){
+        $workshop = Workshop::find($id);
+        $userPhone = $workshop->chosenWorkshops()->wherePivot('workshop_status','my_workshops')->first();
+        $userPhone == null ? $userPhone = '0821346578952' : $userPhone = $userPhone->phone;
+        
+        return view('admin_details',compact('workshop','userPhone'));
     }
 }
