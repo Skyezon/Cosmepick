@@ -168,18 +168,17 @@ class WorkshopController extends Controller
     }
 
     private function getJoinWorkshopList($user){
-        $notDisplayedWorkshopIds = [$this->getUserCreatedWorkshop()->first()->id];
-        $notDisplayedWorkshopIds->concat([
-            $user->chosenWorkshops()
-            ->where(function($query){
-                $query->where('workshop_status', 'my_workshop')
-                ->orWhere('workshop_status', 'upcoming');
-            })
-            ->pluck('id')
-        ]);
+        $notDisplayedWorkshopId = $user->chosenWorkshops()
+        ->where(function($query){
+            $query->where('workshop_status', 'my_workshop')
+            ->orWhere('workshop_status', 'upcoming');
+        })
+        ->pluck('workshop_id');
         
-        return Workshop::whereNotIn('id', $notDisplayedWorkshopIds->toArray())->paginate(5);
+        return Workshop::whereNotIn('id', $notDisplayedWorkshopId->toArray())->paginate(5);
     }
+
+    
 
     public function show($id){
         $workshop = Workshop::find($id);
