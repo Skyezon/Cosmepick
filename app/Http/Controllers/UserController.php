@@ -48,7 +48,6 @@ class UserController extends Controller
      */
     public function show()
     {
-        $workshopController = new WorkshopController();
         $user = Auth::user();        
         return view('profile',compact('user'));
     }
