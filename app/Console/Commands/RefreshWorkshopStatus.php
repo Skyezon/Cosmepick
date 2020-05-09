@@ -42,10 +42,11 @@ class RefreshWorkshopStatus extends Command
      */
     public function handle()
     {
+        \Log::info("Refresh chosen_workshops table!");
+
         $workshopIds = Workshop::where('is_verified', '1')
         ->where('date', '<', Carbon::now('Asia/Jakarta')->toDateString())
         ->distinct()->pluck('id');
-        // dd($workshopIds);
         $this->softDeleteUserCreatedWorkshop($workshopIds);
         $this->changeUpcomingToHistory($workshopIds);
     }
