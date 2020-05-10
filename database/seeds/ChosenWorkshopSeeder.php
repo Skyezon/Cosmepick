@@ -36,6 +36,6 @@ class ChosenWorkshopSeeder extends Seeder
         }
        
 
-        factory(App\ChosenWorkshop::class,env('BANYAK_DATA',25))->create();
+        factory(App\ChosenWorkshop::class,25)->create();
     }
 }
