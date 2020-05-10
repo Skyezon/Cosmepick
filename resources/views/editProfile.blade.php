@@ -8,8 +8,8 @@
     @method('PATCH')
     <div class="d-flex justify-content-center">
         <div class="d-flex flex-column justify-content-center align-items-center p-4">
-            <img src={{asset('storage/'.$user->profile_pic_url)}} alt="profile-pic">
-            <input type="file" class="m-4" name="newProfilePic" value={{$user->profile_pic_url}}>
+            <img src={{asset('storage/'.$user->profile_pic_url)}} alt="profile-pic" id="profile-image">
+            <input type="file" class="m-4" name="newProfilePic" value={{$user->profile_pic_url}} id="profile-input">
             @error('newProfilePic')
         <div class="text-danger">{{$message}}</div>
             @enderror
@@ -70,4 +70,42 @@
     </div>
 </form>
 <div style="height: 9.5vh;"></div>
+
+<script>
+    displayImage = (input,image,i) => {
+            image.src == window.location.href ? image.style.display= 'none' : console.log('jalan'); 
+            input.addEventListener('change',() =>{
+                    image.style.display = 'block'
+                    image.style.maxHeight = '200px'
+                    image.style.maxWidth = '300px'
+
+                    readURL(input,i,image);
+            })
+
+            input.addEventListener('load', () =>{
+                if(image.src == window.location.href){
+                    console.log('jalan')
+                    
+                }else{
+                    readURL(input,i,image)
+                }
+            })
+    }
+
+    function readURL(input,id,image) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                image.setAttribute('src',  e.target.result);
+
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    const input = document.getElementById('profile-input')
+    const image  = document.getElementById('profile-image')
+    displayImage(input,image)
+</script>
 @endsection

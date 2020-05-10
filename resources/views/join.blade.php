@@ -2,7 +2,7 @@
 
 @section('title','Join')
 
-@section('content')\
+@section('content')
 @if(session('message'))
 <div class="alert alert-success">
     {{session('message')}}
@@ -68,29 +68,32 @@
                             href={{route('ViewWorkshop',['id' => $workshop->id])}} role="button">Details</a>
                     </div>
 
-                    @if(Auth::check())
-                    @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','wishlist')->where('workshop_id',$workshop->id)->first()
-                    ?? false)
-                    <a class="img-link"
-                        href="{{route('unRegisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}"
-                        onclick="document.getElementById('myform').submit()">
-                        <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}" style="filter:none"
-                            class="wishlist-btn">
-                    </a>
-                    @else
-                    <a class="img-link"
-                        href="{{route('regisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}"
-                        onclick="document.getElementById('myform').submit()">
-                        <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"
-                            class="wishlist-btn">
-                    </a>
-                    @endif
-                    @else
-                    <a class="img-link" href="{{route('login')}}">
-                        <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"
-                            class="wishlist-btn">
-                    </a>
-                    @endif
+                     
+                        @if(Auth::check())
+                        @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','wishlist')->where('workshop_id',$workshop->id)->first()
+                        ?? false)
+                        <a class="img-link"
+                            href="{{route('unRegisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}"
+                            onclick="document.getElementById('myform').submit()">
+                            <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}" style="filter:none"
+                                class="wishlist-btn">
+                        </a>
+                        @else
+                        <a class="img-link"
+                            href="{{route('regisWorkshop',['workshopId' => $workshop->id,'relationType' => 'wishlist'])}}"
+                            onclick="document.getElementById('myform').submit()">
+                            <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"
+                                class="wishlist-btn">
+                        </a>
+                        @endif
+                        @else
+                        <a class="img-link" href="{{route('login')}}">
+                            <img src={{asset('assets/wishlist_btn.png')}} alt="makeup-{{$loop->index}}"
+                                class="wishlist-btn">
+                        </a>
+                        @endif
+                    
+                   
 
                 </div>
             </div>

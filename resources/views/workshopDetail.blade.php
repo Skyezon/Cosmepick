@@ -8,6 +8,7 @@
                 {{session('message')}}
         </div>
     @endif
+   
 <div class="detail-join-container">
   
 
@@ -20,12 +21,10 @@
     </div>
 
     <script>
-        var slideIndex = 1;
-        showDivs(slideIndex);
-        
-        function plusDivs(n) {
-          showDivs(slideIndex += n);
-        }
+        var imported = document.createElement('script');
+imported.src = '../../js/app.js';
+document.head.appendChild(imported);
+       
         
         function showDivs(n) {
           var i;
@@ -37,6 +36,12 @@
           }
           x[slideIndex-1].style.display = "block";  
         }
+ 
+        $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+        
     </script>
 
     <!-- desc+join -->
@@ -75,16 +80,60 @@
                              @endif
             </div>
             <!-- join -->
+
+        
+
             <div class="join-button-container">
                 @if(Auth::check())
                 @if(Auth::user()->chosenWorkshops()->wherePivot('workshop_status','upcoming')->where('workshop_id',$workshop->id)->first() ?? false)
-                <a class="join-click" href="{{route('unRegisWorkshop',['workshopId' => $workshop->id, 'relationType' => 'upcoming'])}}">
+                <a class="join-click" data-toggle="modal" data-target="#exampleModal" href="">
                     Leave the Class
                 </a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">                          Are you sure you wanted to leave the class?
+                        </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {{-- <div class="modal-body">
+
+                        </div> --}}
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <a type="button" class="btn btn-success" href="{{route('unRegisWorkshop',['workshopId' => $workshop->id, 'relationType' => 'upcoming'])}}">Leave class</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                    @else
-                   <a class="join-click" href="{{route('regisWorkshop',['workshopId' => $workshop->id, 'relationType' => 'upcoming'])}}">
+                   <a class="join-click" data-toggle="modal" data-target="#exampleModal" href="">
                     Join the Class
                 </a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Are you sure you want to register class?
+                          </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {{-- <div class="modal-body">
+                         
+                        </div> --}}
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <a type="button" class="btn btn-success" href="{{route('regisWorkshop',['workshopId' => $workshop->id, 'relationType' => 'upcoming'])}}">Register class</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 @endif
         
                 @else
