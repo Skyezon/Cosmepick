@@ -45,28 +45,40 @@ class RefreshWorkshopStatus extends Command
         \Log::info("Refresh chosen_workshops table!");
 
         $workshopIds = Workshop::where('is_verified', '1')
-        ->where('date', '<', Carbon::now('Asia/Jakarta')->toDateString())
-        ->distinct()->pluck('id');
+            ->where('date', '<', Carbon::now('Asia/Jakarta')->toDateString())
+            ->distinct()->pluck('id');
+
         $this->softDeleteUserCreatedWorkshop($workshopIds);
         $this->changeUpcomingToHistory($workshopIds);
     }
 
-    private function changeUpcomingToHistory($workshopIds){
+    private function changeUpcomingToHistory($workshopIds)
+    {
         ChosenWorkshop::where('workshop_status', 'upcoming')
-        ->whereIn('workshop_id', $workshopIds)
-        ->get();
+            ->whereIn('workshop_id', $workshopIds)
+            ->get();
 
         ChosenWorkshop::where('workshop_status', 'upcoming')
-        ->whereIn('workshop_id', $workshopIds)
-        ->update([
-            'workshop_status' => 'history'
-        ]);
+            ->whereIn('workshop_id', $workshopIds)
+            ->update([
+                'workshop_status' => 'history'
+            ]);
     }
 
-    private function softDeleteUserCreatedWorkshop($workshopIds){
-        $userCreatedWorkshopId = ChosenWorkshop::where('workshop_status', 'my_workshop')->whereIn('workshop_id', $workshopIds)->distinct()->pluck('workshop_id');
-        $userId = ChosenWorkshop::where('workshop_status', 'my_workshop')->whereIn('workshop_id', $workshopIds)->distinct()->pluck('user_id');
-        
+    private function softDeleteUserCreatedWorkshop($workshopIds)
+    {
+        $userCreatedWorkshopId = ChosenWorkshop::where(function($query){
+            $query->where('workshop_status', 'my_workshop')
+            ->orWhere('workshop_status', 'wishlist');
+        })
+        ->whereIn('workshop_id', $workshopIds)->distinct()->pluck('workshop_id');
+
+        $userId = ChosenWorkshop::where(function($query){
+            $query->where('workshop_status', 'my_workshop')
+            ->orWhere('workshop_status', 'wishlist');
+        })
+        ->whereIn('workshop_id', $workshopIds)->distinct()->pluck('user_id');
+
         ChosenWorkshop::whereIn('workshop_id', $userCreatedWorkshopId)->whereIn('user_id', $userId)->delete();
         Workshop::whereIn('id', $workshopIds)->delete();
     }

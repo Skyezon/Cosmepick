@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('workshop:refresh')->timezone('Asia/Jakarta')->everyMinute();
+        $schedule->command('workshop:refresh')->timezone('Asia/Jakarta')->hourly();
 
         //For Cron Testing Purpose
         // $schedule->command('demo:cron')->timezone('Asia/Jakarta')->everyMinute();
