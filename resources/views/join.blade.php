@@ -118,9 +118,6 @@
 
     </div>
 
-    <div class="join-page">
-        <a href="" class="join-page">1</a>
-    </div>
 </div>
 
 <script>

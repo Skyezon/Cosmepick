@@ -9,7 +9,7 @@
         <div class="layout-inline row d-flex justify-content-center align-items-center">
             <div class="col col-pro layout-inline d-flex flex-column justify-content-center align-items-center ">
                 <img style="align-items: center;">
-                    <a href="#">
+                    <a href="{{route('ViewWorkshop',['id' => $workshop->id])}}">
                         <img src="{{asset('storage/'.$workshop->workshopImages()->first()->url)}}" alt="{{$workshop->name}}">
                     </a>
                 <p><a href={{route('ViewWorkshop',['id' => $workshop->id])}}>{{$workshop->name}}</a></p>
