@@ -730,6 +730,7 @@ h2 {
 
 .wishlist-btn {
   height: 3rem;
+  width: 3rem;
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
 }

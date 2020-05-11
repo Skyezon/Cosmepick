@@ -65,11 +65,11 @@
 </div>
 <div class="d-flex justify-content-center my-4">
     <div class="d-flex flex-column mr-5">
-        <span>Ini foot hanya ktp :</span>
+        <span>Ini foto hanya ktp :</span>
         <img src="{{asset('storage/'.$workshop->userImages->url_only_ktp)}}" alt="image-url-only-ktp">
     </div>
     <div class="d-flex flex-column ml-5">
-        <span>Ini foot dengan ktp :</span>
+        <span>Ini foto dengan ktp :</span>
         <img src="{{asset('storage/'.$workshop->userImages->url_with_ktp)}}" alt="image-url-with-ktp">
     </div>
 </div>
