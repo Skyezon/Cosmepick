@@ -93,11 +93,6 @@
                         Profile
                     </a>
                 </div>
-                <div>
-                    <a class="footer-link-left" href="">
-                        Contact Us
-                    </a>
-                </div>
             </div>
         </div>
 
